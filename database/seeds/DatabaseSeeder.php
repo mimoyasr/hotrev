@@ -12,11 +12,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
-        //omnia seed reciprion
+        //seed reciprion
         DB::table('users')->insert([
-            'name' => "omnia",
-            'email' => "omnia".'@gmail.com',
-            'password' => bcrypt('11111'),
+            'name' => str_random(10),
+            'email' => str_random(10).'@gmail.com',
+            'password' => bcrypt('secret'),
         ]);
         //-------------------------------------//
     }
