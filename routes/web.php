@@ -18,3 +18,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+//omnia//
+//receiption routes
+Route::get('receiptionist','ReceptionistController@index')->name('receiptionist.index');
+//-------------------------------------------------------------------------------------//
+//floor routes
+Route::get('floor','FloorController@index')->name('Floor.index');
+//--------------------------------------------------------//
