@@ -1,4 +1,7 @@
 
+@extends('layouts.base')
+@section('content')
+
 <div class="col-md-12 text-center"> 
 
 <button type="button" class="btn btn-success" onclick="window.location='{{ url("floors/create") }}'">Create floor</button>
@@ -6,7 +9,7 @@
 </div>
 
 <div class ="container-fluid"> 
-<table  class="table table-bordered table-striped text-center">
+<table  id="myTable" class="table table-bordered table-striped text-center">
   <thead>
     <tr class="text-center">
       <th scope="col">#</th>
@@ -44,7 +47,13 @@
 
 </div>
 
+@endsection
 
-
+<!-- <script src="cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script> -->
+<!-- <script>
+$(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+<script> -->
 
 
