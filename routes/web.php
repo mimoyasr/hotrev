@@ -19,5 +19,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 //omnia//
-Route::get('receiptionList','ReceptionistController@index')->name('receiptionList.index');
+//receiption routes
+Route::get('receiptionist','ReceptionistController@index')->name('receiptionist.index');
+//-------------------------------------------------------------------------------------//
+//floor routes
+Route::get('floor','FloorController@index')->name('Floor.index');
 //--------------------------------------------------------//
