@@ -1,7 +1,7 @@
 
 <div class="col-md-12 text-center"> 
 
-<button type="button" class="btn btn-success" onclick="window.location='{{ url("") }}'">Create Receiptionist</button>
+<button type="button" class="btn btn-success" onclick="window.location='{{ url("floors/create") }}'">Create floor</button>
 
 </div>
 
@@ -26,7 +26,6 @@
       
 
       <td>
-        <button type="button" class="btn btn-info">View</button>
         <button type="button" class="btn btn-primary">Edit</button>
         <form action="" method="post">
           {{csrf_field()}}
