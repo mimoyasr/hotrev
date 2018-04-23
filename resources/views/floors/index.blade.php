@@ -26,13 +26,13 @@
       
 
       <td>
-        <button type="button" class="btn btn-primary">Edit</button>
-        <form action="" method="post">
+        <button type="button" class="btn btn-primary"  onclick="window.location='{{ url("floors/$floor->id/edit") }}'">Edit</button>
+        <form action="/floors/{{$floor->id}}" method="post">
           {{csrf_field()}}
       
 {{ method_field('DELETE') }}
 <button type="submit" class="btn btn-danger" onclick="return confirm('Are You Sure ?');">Delete</button>
-</form> 
+</form>
       </td>
       
     </tr>

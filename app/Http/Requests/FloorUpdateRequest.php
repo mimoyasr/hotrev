@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 use App\Floor;
 
-class FloorsStoreRequest extends FormRequest
+class FloorUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,7 +27,8 @@ class FloorsStoreRequest extends FormRequest
     {
         return [
             //
-            'name' => 'required|min:3|unique:floors',
+                'name' => 'required|unique:floors,id|min:3',
+          
         ];
     }
 }

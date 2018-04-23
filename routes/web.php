@@ -23,11 +23,15 @@ Route::get('/home', 'HomeController@index')->name('home');
 //receiption routes
 Route::get('receiptionist','ReceptionistController@index')->name('receiptionist.index');
 //-------------------------------------------------------------------------------------//
-
 //floorroutes//
-//floor routes
 Route::get('floors','FloorController@index')->name('floors.index');
 Route::get('floors/create','FloorController@create')->name('floors.create');
 Route::post('floors/store','FloorController@store')->name('floors.store');
+Route::get('floors/{id}/edit', 'FloorController@edit')->name('floors.edit');
+Route::post('floors/{id}', 'FloorController@update')->name('floors.update');
+Route::delete('floors/{id}', 'FloorController@delete')->name('floors.delete');
+
 //--------------------------------------------------------//
+
+
 
