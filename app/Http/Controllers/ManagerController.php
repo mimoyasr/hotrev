@@ -15,7 +15,11 @@ class ManagerController extends Controller
      */
     public function index()
     {
-        //
+
+        $manager=Manager::all();
+        return view("manager.index",[
+            "managers"=> $manager
+        ]);
     }
 
     /**
@@ -25,7 +29,7 @@ class ManagerController extends Controller
      */
     public function create()
     {
-        //
+        return view ("manager.create");
     }
 
     /**
@@ -61,7 +65,7 @@ class ManagerController extends Controller
      */
     public function show(Manager $manager)
     {
-        //
+        
     }
 
     /**
@@ -72,7 +76,7 @@ class ManagerController extends Controller
      */
     public function edit(Manager $manager)
     {
-        //
+        return view("manager.edit",["managers"=>$manager]);
     }
 
     /**
@@ -84,7 +88,8 @@ class ManagerController extends Controller
      */
     public function update(Request $request, Manager $manager)
     {
-        //
+        $manager->update($request->all());
+        return redirect(route('manager.index'));
     }
 
     /**
@@ -95,6 +100,7 @@ class ManagerController extends Controller
      */
     public function destroy(Manager $manager)
     {
-        //
+        $manager->delete();
+        return redirect(route('manager.index'));
     }
 }
