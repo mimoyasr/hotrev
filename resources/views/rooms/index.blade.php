@@ -4,7 +4,7 @@
 
 <div class="col-md-12 text-center"> 
 
-<button type="button" class="btn btn-success" onclick="window.location='{{ url("floors/create") }}'">Create floor</button>
+<button type="button" class="btn btn-success" onclick="window.location='{{ url("rooms/create") }}'">Create room</button>
 
 </div>
 
@@ -13,24 +13,29 @@
   <thead>
     <tr class="text-center">
       <th scope="col">#</th>
-      <th scope="col">Name</th>
       <th scope="col">Number</th>
+      <th scope="col">Capacity</th>
+      <th scope="col">Price</th>
+      <th scope="col">Floor Name</th>
 
     </tr>
   </thead>
   <tbody>
 
     
-    @foreach ($floors as $floor) 
+     @foreach ($rooms as $room)  
     <tr>
-      <th scope="row">{{$floor->id}}</th>
-      <td>{{$floor->name}}</td>
-      <td>{{$floor->nubmber}}</td>
+      <th scope="row">1</th>
+      <td>{{$room->number}}</td>
+      <td>{{$room->capacity}}</td>
+      <td>{{$room->price}}</td>
+      <td>{{$room->floor->name}}</td>
+      
       
 
       <td>
-        <button type="button" class="btn btn-primary"  onclick="window.location='{{ url("floors/$floor->id/edit") }}'">Edit</button>
-        <form action="/floors/{{$floor->id}}" method="post">
+        <button type="button" class="btn btn-primary"  onclick="window.location='{{ url("rooms/$room->id/edit") }}'">Edit</button>
+        <form action="/rooms/{{$room->id}}" method="post">
           {{csrf_field()}}
       
 {{ method_field('DELETE') }}

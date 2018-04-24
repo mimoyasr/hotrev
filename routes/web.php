@@ -32,6 +32,11 @@ Route::post('floors/{id}', 'FloorController@update')->name('floors.update');
 Route::delete('floors/{id}', 'FloorController@delete')->name('floors.delete');
 
 //--------------------------------------------------------//
-
+//rooms routes//
+Route::get('rooms','RoomController@index')->name('rooms.index');
+Route::get('rooms/create','RoomController@create')->name('rooms.create');
+Route::post('rooms/store','RoomController@store')->name('rooms.store');
+Route::delete('rooms/{id}', 'RoomController@delete')->name('rooms.delete');
+//--------------------------------------------------------//
 
 
