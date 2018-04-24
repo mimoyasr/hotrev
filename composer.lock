@@ -5,6 +5,7 @@
         "This file is @generated automatically"
     ],
     "content-hash": "9685b8b952ccaf67acb39ad3285f6052",
+
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -879,6 +880,7 @@
                 "token"
             ],
             "time": "2016-12-05T07:27:31+00:00"
+
         },
         {
             "name": "nesbot/carbon",
@@ -1989,6 +1991,7 @@
                 "shim"
             ],
             "time": "2018-01-30T19:27:44+00:00"
+
         },
         {
             "name": "symfony/polyfill-php72",
