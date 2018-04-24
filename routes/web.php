@@ -25,6 +25,7 @@ Route::get('receiptionist','ReceptionistController@index')->name('receiptionist.
 //-------------------------------------------------------------------------------------//
 //floorroutes//
 Route::get('floors','FloorController@index')->name('floors.index');
+Route::get('floors/getdata','FloorController@getdata')->name('floors.data');
 Route::get('floors/create','FloorController@create')->name('floors.create');
 Route::post('floors/store','FloorController@store')->name('floors.store');
 Route::get('floors/{id}/edit', 'FloorController@edit')->name('floors.edit');

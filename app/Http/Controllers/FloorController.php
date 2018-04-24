@@ -14,6 +14,8 @@ use App\Http\Requests\FloorsStoreRequest;
 
 use App\Http\Requests\FloorUpdateRequest;
 
+use Yajra\Datatables\Datatables;
+
 class FloorController extends Controller
 {
     //
@@ -22,11 +24,18 @@ class FloorController extends Controller
     {
         //retreive all floors
         $floors= Floor::all();
-    	return view('floors.index',[
-    		'floors' => $floors
-    	]);
+    	// return view('floors.index',[
+    	// 	'floors' => $floors
+        // ]);
+        
+        return view('floors.index'); 
     }
 
+    public function getdata()
+    {
+
+        return Datatables::of(Floor::query())->make(true);
+    }
     public function create()
     {
         return view('floors.create');
