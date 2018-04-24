@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Manager;
 use App\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\EditManagerRequest;
+use App\Http\Requests\StoreManagerRequest;
 
 class ManagerController extends Controller
 {
@@ -35,10 +37,10 @@ class ManagerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\StoreManagerRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreManagerRequest $request)
     {
         /**
          * [
@@ -82,11 +84,11 @@ class ManagerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\EditManagerRequest  $request
      * @param  \App\Manager  $manager
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Manager $manager)
+    public function update(EditManagerRequest $request, Manager $manager)
     {
         $manager->update($request->all());
         return redirect(route('manager.index'));
