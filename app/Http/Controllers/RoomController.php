@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 
 use  App\Http\Requests\RoomsStoreRequest;
 
+use  App\Http\Requests\RoomUpdateRequest;
+
 class RoomController extends Controller
 {
     //
@@ -45,28 +47,30 @@ class RoomController extends Controller
         return redirect(route('rooms.index')); 
      }
 
-    //  public function edit(request $request)
-    // {
-       
-    //     $floor = Floor::whereId($request->id)->first();
+     public function edit(request $request)
+    {
+        $floors= Floor::all();
+        $room = Room::whereId($request->id)->first();
 
-       
+        return view('rooms.edit',[
+            'room' => $room,
+            'floors' => $floors,
+        ]);
+    }
 
-    //     return view('floors.edit',[
-    //         'floor' => $floor,
-    //     ]);
-    // }
-
-//     public function update(FloorUpdateRequest $request)
-//     {
+    public function update(RoomUpdateRequest $request)
+    {
          
 
-//    Floor::where('id', $request->id)->update(array(
-//             'name'    =>  $request->name,
-//         ));
+   Room::where('id', $request->id)->update(array(
+            'number' =>$request->number,
+            'capacity' => $request->capacity,
+            'price' => $request->price,
+            'floor_id' => $request->floor,
+        ));
   
-//    return redirect(route('floors.index')); 
-//     }
+   return redirect(route('rooms.index')); 
+    }
 
     public function delete($id)
     {

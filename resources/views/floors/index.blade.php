@@ -2,7 +2,11 @@
 @extends('layouts.base')
 @section('content')
 
+<div class="col-md-12 text-center"> 
 
+<button type="button" class="btn btn-success" onclick="window.location='{{ url("floors/create") }}'">Create room</button>
+
+</div>
 
 
  <table class="table table-bordered" id="users-table">
