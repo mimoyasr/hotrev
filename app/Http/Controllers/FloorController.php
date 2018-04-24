@@ -34,7 +34,14 @@ class FloorController extends Controller
     public function getdata()
     {
 
-        return Datatables::of(Floor::query())->make(true);
+        return Datatables::of(Floor::query())
+        ->addColumn('action', function($query){
+        $ret =  "<a href='floors/" . $query->id . "/edit' class='btn btn-xs btn-primary'><i class='glyphicon glyphicon-edit'></i> Edit</a>";
+        $ret .= "<button type='button' target='".$query->id."'  class='delete btn-xs btn btn-danger' > DELETE </button>";
+       // $ret .= "<script>$('.delete').on('click',function(){console.log('here'); });</script>";
+            return $ret;
+    })->rawcolumns(['action']) ->make(true);
+       
     }
     public function create()
     {
@@ -88,7 +95,9 @@ class FloorController extends Controller
     {
         
          Floor::find($id)->delete();
-         return redirect(route('floors.index')); 
+         return json_encode([
+             "status"=> 1
+             ]);
     }
 
 
