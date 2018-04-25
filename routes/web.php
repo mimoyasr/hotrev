@@ -20,14 +20,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//omnia//
-//receiption routes
-Route::get('receiptionist','ReceptionistController@index')->name('receiptionist.index');
-//-------------------------------------------------------------------------------------//
-//floor routes
 
+Route::get('receiptionist','ReceptionistController@index')->name('receiptionist.index');
 Route::get('floors','FloorController@index')->name('floors.index');
 Route::get('floors/create','FloorController@create')->name('floors.create');
 Route::post('floors/store','FloorController@store')->name('floors.store');
-//--------------------------------------------------------//
+
 

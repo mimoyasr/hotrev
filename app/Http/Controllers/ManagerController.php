@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Manager;
 use App\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\EditManagerRequest;
+use App\Http\Requests\StoreManagerRequest;
 
 class ManagerController extends Controller
 {
@@ -15,7 +17,11 @@ class ManagerController extends Controller
      */
     public function index()
     {
-        //
+
+        $manager=Manager::all();
+        return view("manager.index",[
+            "managers"=> $manager
+        ]);
     }
 
     /**
@@ -25,16 +31,16 @@ class ManagerController extends Controller
      */
     public function create()
     {
-        //
+        return view ("manager.create");
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\StoreManagerRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreManagerRequest $request)
     {
         /**
          * [
@@ -61,7 +67,7 @@ class ManagerController extends Controller
      */
     public function show(Manager $manager)
     {
-        //
+        
     }
 
     /**
@@ -72,19 +78,20 @@ class ManagerController extends Controller
      */
     public function edit(Manager $manager)
     {
-        //
+        return view("manager.edit",["managers"=>$manager]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\EditManagerRequest  $request
      * @param  \App\Manager  $manager
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Manager $manager)
+    public function update(EditManagerRequest $request, Manager $manager)
     {
-        //
+        $manager->update($request->all());
+        return redirect(route('manager.index'));
     }
 
     /**
@@ -95,6 +102,7 @@ class ManagerController extends Controller
      */
     public function destroy(Manager $manager)
     {
-        //
+        $manager->delete();
+        return redirect(route('manager.index'));
     }
 }
