@@ -3,8 +3,8 @@ for template :
 
 for Permission : 
 ```bash
-php artisan permission:create-role Admin  <br/>
-php artisan permission:create-role Manager  <br/>
-php artisan permission:create-role Receptionist  <br/>
-php artisan permission:create-role Client  <br/>
+php artisan permission:create-role Admin  
+php artisan permission:create-role Manager  
+php artisan permission:create-role Receptionist  
+php artisan permission:create-role Client 
 ```
