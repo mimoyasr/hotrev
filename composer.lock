@@ -4,7 +4,12 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "a12f465ce3b59db85e33fe24a3b32ccf",
+=======
+    "content-hash": "9685b8b952ccaf67acb39ad3285f6052",
+
+>>>>>>> 612173fdf777803c19365c1e4fa59ab1e5cc48bd
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -937,6 +942,7 @@
                 "token"
             ],
             "time": "2016-12-05T07:27:31+00:00"
+
         },
         {
             "name": "nesbot/carbon",
@@ -2047,6 +2053,7 @@
                 "shim"
             ],
             "time": "2018-01-30T19:27:44+00:00"
+
         },
         {
             "name": "symfony/polyfill-php72",
