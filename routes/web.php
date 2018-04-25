@@ -30,3 +30,9 @@ Route::get('floors/create','FloorController@create')->name('floors.create');
 Route::post('floors/store','FloorController@store')->name('floors.store');
 
 
+
+
+Route::get('receptionistsoperations','ReceptionistsOperationsController@index')->name('receptionistsoperations.index');
+
+
+

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ReceptionistsHomeController extends Controller
+class ReceptionistsOperationsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,6 +14,7 @@ class ReceptionistsHomeController extends Controller
     public function index()
     {
         //
+        dd("in receptionists home controller");
     }
 
     /**
