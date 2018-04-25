@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Manager;
 use App\User;
+use App\Createdby;
 use Illuminate\Http\Request;
 use App\Http\Requests\EditManagerRequest;
 use App\Http\Requests\StoreManagerRequest;
@@ -53,9 +54,9 @@ class ManagerController extends Controller
          */
         $data = $request->all();
         $user = User::create($data);
-        // $data=Manager::create($data)
         $data['user_id'] = $user->id ;
         $manager = Manager::create($data);
+        Createdby::create(['creator' => Auth::id() , 'created_by' => $manager->id]);
         $manager->assignRole('Manager');
     }
 
