@@ -4,7 +4,7 @@
 
 <div class="col-md-12 text-center"> 
 
-<button type="button" class="btn btn-success" onclick="window.location='{{ url("floors/create") }}'">Create room</button>
+<button type="button" class="btn btn-success" onclick="window.location='{{ url("floors/create") }}'">Create Floor</button>
 
 </div>
 

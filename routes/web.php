@@ -35,6 +35,7 @@ Route::delete('floors/{id}', 'FloorController@delete')->name('floors.delete');
 //--------------------------------------------------------//
 //rooms routes//
 Route::get('rooms','RoomController@index')->name('rooms.index');
+Route::get('rooms/getdata','RoomController@getdata')->name('rooms.data');
 Route::get('rooms/create','RoomController@create')->name('rooms.create');
 Route::post('rooms/store','RoomController@store')->name('rooms.store');
 Route::get('rooms/{id}/edit', 'RoomController@edit')->name('rooms.edit');

@@ -5,12 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Room;
+
 use App\Floor;
+
 use Illuminate\Support\Facades\Auth;
 
 use  App\Http\Requests\RoomsStoreRequest;
 
 use  App\Http\Requests\RoomUpdateRequest;
+
+use Yajra\Datatables\Datatables;
+
 
 class RoomController extends Controller
 {
@@ -22,6 +27,19 @@ class RoomController extends Controller
     	return view('rooms.index',[
     		'rooms' => $rooms
     	]);
+    }
+
+    public function getdata()
+    {
+
+        return Datatables::of(Room::query())
+        ->addColumn('action', function($query){
+        $ret =  "<a href='rooms/" . $query->id . "/edit' class='btn btn-xs btn-primary'><i class='glyphicon glyphicon-edit'></i> Edit</a>";
+        $ret .= "<button type='button' target='".$query->id."'  class='delete btn-xs btn btn-danger' > DELETE </button>";
+       // $ret .= "<script>$('.delete').on('click',function(){console.log('here'); });</script>";
+            return $ret;
+    })->rawcolumns(['action']) ->make(true);
+       
     }
 
     public function create()
@@ -63,7 +81,7 @@ class RoomController extends Controller
          
 
    Room::where('id', $request->id)->update(array(
-            'number' =>$request->number,
+            //'number' =>$request->number,
             'capacity' => $request->capacity,
             'price' => $request->price,
             'floor_id' => $request->floor,
