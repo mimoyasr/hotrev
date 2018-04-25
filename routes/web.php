@@ -14,16 +14,17 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::resource('managers', 'ManagerController');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//omnia//
-//receiption routes
+
 Route::get('receiptionist','ReceptionistController@index')->name('receiptionist.index');
-//-------------------------------------------------------------------------------------//
-//floorroutes//
+
+Route::get('floor','FloorController@index')->name('Floor.index');
+
 Route::get('floors','FloorController@index')->name('floors.index');
 Route::get('floors/getdata','FloorController@getdata')->name('floors.data');
 Route::get('floors/create','FloorController@create')->name('floors.create');

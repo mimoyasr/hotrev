@@ -8,7 +8,6 @@ use Cviebrock\EloquentSluggable\Sluggable;
 
 class Room extends Model
 {
-    //
     protected $fillable = [
         'name',
         'capacity',
@@ -23,5 +22,8 @@ class Room extends Model
     {
         //User::class == 'App\User'
         return $this->belongsTo(Floor::class);
+    public function user()
+    {
+        return $this->belongsToMany(User::class, 'reservations');
     }
 }
