@@ -20,11 +20,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
+//---receiptionist---//
 Route::get('receiptionist','ReceptionistController@index')->name('receiptionist.index');
+//--------------------------------------------------------------------------------------//
 
-Route::get('floor','FloorController@index')->name('Floor.index');
-
+//---floors--//
 Route::get('floors','FloorController@index')->name('floors.index');
 Route::get('floors/getdata','FloorController@getdata')->name('floors.data');
 Route::get('floors/create','FloorController@create')->name('floors.create');
@@ -34,6 +34,7 @@ Route::post('floors/{id}', 'FloorController@update')->name('floors.update');
 Route::delete('floors/{id}', 'FloorController@delete')->name('floors.delete');
 
 //--------------------------------------------------------//
+
 //rooms routes//
 Route::get('rooms','RoomController@index')->name('rooms.index');
 Route::get('rooms/getdata','RoomController@getdata')->name('rooms.data');

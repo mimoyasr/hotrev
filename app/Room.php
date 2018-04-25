@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 use Cviebrock\EloquentSluggable\Sluggable;
 
+use App\Floor;
+
+
 class Room extends Model
 {
     protected $fillable = [
@@ -22,8 +25,6 @@ class Room extends Model
     {
         //User::class == 'App\User'
         return $this->belongsTo(Floor::class);
-    public function user()
-    {
-        return $this->belongsToMany(User::class, 'reservations');
     }
+    
 }
