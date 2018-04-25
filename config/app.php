@@ -148,7 +148,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
-
+        Cog\Laravel\Ban\Providers\BanServiceProvider::class,
         /*
          * Package Service Providers...
          */
