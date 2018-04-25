@@ -48,17 +48,20 @@ class ManagerController extends Controller
         $data = $request->all();
         if($request->hasFile('photo')){
             $photo = $request->file('photo');
-            $filename = time() . '.' . $photo->getClientOriginalExtension();
-            Image::make($photo)->resize(300, 300)->save( public_path('uploads/' . $filename ) );
-            $data['photo']=$filename;   
+            $filename = time().'.'.$photo->getClientOriginalExtension();
+            $data['photo'] = $filename;
+            $destinationPath = public_path('uploads');
+            if(!$photo->move($destinationPath, $filename)){
+                return 'Error saving the file.';
+            }
         }
         $user = User::create($data);
         $data['user_id'] = $user->id ;
        
         $manager = Manager::create($data);
-        Createdby::create(['creator' => Auth::id() , 'created_by' => $manager->id]);
-        $manager->assignRole('Manager');
-        return redirect(route('Manager.index'));
+        // Createdby::create(['creator' => Auth::id() , 'created_by' => $manager->id]);
+        // $manager->assignRole('Manager');
+        return redirect(route('managers.index'));
     }
 
     /**
@@ -93,7 +96,7 @@ class ManagerController extends Controller
     public function update(EditManagerRequest $request, Manager $manager)
     {
         $manager->update($request->all());
-        return redirect(route('Manager.index'));
+        return redirect(route('managers.index'));
     }
 
     /**
@@ -105,6 +108,6 @@ class ManagerController extends Controller
     public function destroy(Manager $manager)
     {
         $manager->delete();
-        return redirect(route('Manager.index'));
+        return redirect(route('managers.index'));
     }
 }
