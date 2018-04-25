@@ -8,6 +8,7 @@ use App\Createdby;
 use Illuminate\Http\Request;
 use App\Http\Requests\EditManagerRequest;
 use App\Http\Requests\StoreManagerRequest;
+use Image;
 
 class ManagerController extends Controller
 {
@@ -20,7 +21,7 @@ class ManagerController extends Controller
     {
 
         $manager=Manager::all();
-        return view("manager.index",[
+        return view("Manager.index",[
             "managers"=> $manager
         ]);
     }
@@ -31,8 +32,8 @@ class ManagerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view ("manager.create");
+    { 
+        return view ("Manager.create");
     }
 
     /**
@@ -43,21 +44,21 @@ class ManagerController extends Controller
      */
     public function store(StoreManagerRequest $request)
     {
-        /**
-         * [
-         * name,
-         * email,
-         * password,
-         * photo,
-         * national_id
-         * ]
-         */
+       
         $data = $request->all();
+        if($request->hasFile('photo')){
+            $photo = $request->file('photo');
+            $filename = time() . '.' . $photo->getClientOriginalExtension();
+            Image::make($photo)->resize(300, 300)->save( public_path('uploads/' . $filename ) );
+            $data['photo']=$filename;   
+        }
         $user = User::create($data);
         $data['user_id'] = $user->id ;
+       
         $manager = Manager::create($data);
         Createdby::create(['creator' => Auth::id() , 'created_by' => $manager->id]);
         $manager->assignRole('Manager');
+        return redirect(route('Manager.index'));
     }
 
     /**
@@ -79,7 +80,7 @@ class ManagerController extends Controller
      */
     public function edit(Manager $manager)
     {
-        return view("manager.edit",["managers"=>$manager]);
+        return view("Manager.edit",["managers"=>$manager]);
     }
 
     /**
@@ -92,7 +93,7 @@ class ManagerController extends Controller
     public function update(EditManagerRequest $request, Manager $manager)
     {
         $manager->update($request->all());
-        return redirect(route('manager.index'));
+        return redirect(route('Manager.index'));
     }
 
     /**
@@ -104,6 +105,6 @@ class ManagerController extends Controller
     public function destroy(Manager $manager)
     {
         $manager->delete();
-        return redirect(route('manager.index'));
+        return redirect(route('Manager.index'));
     }
 }
