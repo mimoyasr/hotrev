@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Manager;
 use App\User;
+use App\Createdby;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Http\Requests\EditManagerRequest;
+use App\Http\Requests\StoreManagerRequest;
 
 class ManagerController extends Controller
 {
@@ -15,7 +19,6 @@ class ManagerController extends Controller
      */
     public function index()
     {
-
         $manager=Manager::all();
         return view("manager.index",[
             "managers"=> $manager
@@ -35,37 +38,29 @@ class ManagerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\StoreManagerRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreManagerRequest $request)
     {
-        /**
-         * [
-         * name,
-         * email,
-         * password,
-         * photo,
-         * national_id
-         * ]
-         */
         $data = $request->all();
+        if($request->hasFile('photo')){
+            $photo = $request->file('photo');
+            $filename = time().'.'.$photo->getClientOriginalExtension();
+            $data['photo'] = $filename;
+            $destinationPath = public_path('uploads');
+            if(!$photo->move($destinationPath, $filename)){
+                return 'Error saving the file.';
+            }
+        }
         $user = User::create($data);
-        // $data=Manager::create($data)
         $data['user_id'] = $user->id ;
         $manager = Manager::create($data);
-        $manager->assignRole('Manager');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Manager  $manager
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Manager $manager)
-    {
-        
+        Createdby::create(['creator' => Auth::id() , 'created_by' => $manager->id]);
+        $user->assignRole('Manager');
+        $user->assignRole('Receptionist');
+        $user->assignRole('Client');
+        return redirect(route('managers.index'));
     }
 
     /**
@@ -82,14 +77,14 @@ class ManagerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\EditManagerRequest  $request
      * @param  \App\Manager  $manager
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Manager $manager)
+    public function update(EditManagerRequest $request, Manager $manager)
     {
         $manager->update($request->all());
-        return redirect(route('manager.index'));
+        return redirect(route('managers.index'));
     }
 
     /**
@@ -101,6 +96,6 @@ class ManagerController extends Controller
     public function destroy(Manager $manager)
     {
         $manager->delete();
-        return redirect(route('manager.index'));
+        return redirect(route('managers.index'));
     }
 }

@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests\FloorsStoreRequest;
 
+use App\Http\Requests\FloorUpdateRequest;
+
+use Yajra\Datatables\Datatables;
+
 class FloorController extends Controller
 {
     //
@@ -20,11 +24,25 @@ class FloorController extends Controller
     {
         //retreive all floors
         $floors= Floor::all();
-    	return view('floors.index',[
-    		'floors' => $floors
-    	]);
+    	// return view('floors.index',[
+    	// 	'floors' => $floors
+        // ]);
+        
+        return view('floors.index'); 
     }
 
+    public function getdata()
+    {
+
+        return Datatables::of(Floor::query())
+        ->addColumn('action', function($query){
+        $ret =  "<a href='floors/" . $query->id . "/edit' class='btn btn-xs btn-primary'><i class='glyphicon glyphicon-edit'></i> Edit</a>";
+        $ret .= "<button type='button' target='".$query->id."'  class='delete btn-xs btn btn-danger' > DELETE </button>";
+       // $ret .= "<script>$('.delete').on('click',function(){console.log('here'); });</script>";
+            return $ret;
+    })->rawcolumns(['action']) ->make(true);
+       
+    }
     public function create()
     {
         return view('floors.create');
@@ -49,4 +67,39 @@ class FloorController extends Controller
 
        return redirect(route('floors.index')); 
     }
+
+    public function edit(request $request)
+    {
+       
+        $floor = Floor::whereId($request->id)->first();
+
+       
+
+        return view('floors.edit',[
+            'floor' => $floor,
+        ]);
+    }
+
+    public function update(FloorUpdateRequest $request)
+    {
+         
+
+   Floor::where('id', $request->id)->update(array(
+            'name'    =>  $request->name,
+        ));
+  
+   return redirect(route('floors.index')); 
+    }
+
+    public function delete($id)
+    {
+        
+         Floor::find($id)->delete();
+         return json_encode([
+             "status"=> 1
+             ]);
+    }
+
+
+    
 }
