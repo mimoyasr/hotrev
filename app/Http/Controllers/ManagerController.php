@@ -30,6 +30,7 @@ class ManagerController extends Controller
    
     public function store(StoreManagerRequest $request)
     {
+        dd(Auth::id());
         $data = $request->all();
         if($request->hasFile('photo')){
             $photo = $request->file('photo');

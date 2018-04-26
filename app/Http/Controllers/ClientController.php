@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Client;
 use App\Country;
+use App\Rooms;
 use App\Http\Requests\StoreClinetRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Yajra\Datatables\Datatables;
 
 class ClientController extends Controller
 {
@@ -17,7 +20,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        
+        return view('clients.index');
     }
 
     /**
@@ -102,4 +105,19 @@ class ClientController extends Controller
     {
         //
     }
+
+
+    public function getdata()
+    {
+        
+    return Datatables::of(DB::table('rooms')->where('is_reserved',0)->get())
+    ->addColumn('action', function($query){
+    $ret =  "<div class='text-center' > <button type='button' target='".$query->id."'  class=' btn btn-primary' > Reserve </button> </div>";
+        return $ret;
+    })
+    ->rawcolumns(['action'])
+    ->make(true);
+
+    }
+
 }
