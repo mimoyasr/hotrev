@@ -45,7 +45,7 @@ class CreateAdmin extends Command
             'name'=>$this->option('name'),
             "password"=>bcrypt($this->option('password')),
             "email"=>$this->option('email')
-            ])->assignRole('Admin');
+            ])->assignRole('Admin')->assignRole('Manager')->assignRole('Receptionist')->assignRole('Client');
        
         
     }
