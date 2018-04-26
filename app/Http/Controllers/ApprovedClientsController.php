@@ -13,7 +13,7 @@ class ApprovedClientsController extends Controller
      */
     public function index()
     {
-        //
+        return view('ApprovedClients.index');
     }
 
     /**

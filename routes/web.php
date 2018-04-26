@@ -90,21 +90,24 @@ Route::delete('rooms/{id}', 'RoomController@delete')->name('rooms.delete');
 
 //------------------------------------------------------------------------------------//
 //approve pinding datatable
-Route::get('/pendingclientsdatatablesapprove', 'PendingClientsDataTablesApproveController@index')->name('pendingclientsdatatablesapprove.index');
-
-
+Route::get('/pendingclientsdatatablesapprove', 'PendingClientsDataTablesApproveController@index')
+    ->name('pendingclientsdatatablesapprove.index');
 //approve pinding
-Route::get('/pendingclients', 'PendingClientsController@index')->name('pendingclients.index');
-Route::put('/pendingclients/{id}', 'PendingClientsController@update')->name('pendingclients.update');
+Route::get('/pendingclients', 'PendingClientsController@index')
+    ->name('pendingclients.index');
+Route::put('/pendingclients/{id}', 'PendingClientsController@update')
+    ->name('pendingclients.update');
 
 
 //------------------------------------------------------------------------------------//
 //Approved clients datatable
-Route::get('/approvedclientsdatatablesapprove', 'ApprovedClientsDataTablesApproveController@index')->name('approvedclientsdatatablesapprove.index');
+Route::get('/approvedclientsdatatables', 'ApprovedClientsDataTablesController@index')
+    ->name('approvedclientsdatatables.index');
 
 
 //Approved clients
-Route::get('/approvedclients', 'ApprovedClientsController@index')->name('approvedclients.index');
+Route::get('/approvedclients', 'ApprovedClientsController@index')
+    ->name('approvedclients.index');
 
 //------------------------------------------------------------------------------------//
 

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Client;
+use Auth;
 
-class ApprovedClientsDataTablesApproveController extends Controller
+class ApprovedClientsDataTablesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +15,19 @@ class ApprovedClientsDataTablesApproveController extends Controller
      */
     public function index()
     {
-        //
+        $receptionist_current_id=Auth::user()->id;//need some permission
+        $clients = Client::join('users',
+            'clients.user_id',
+            '=', 'users.id')
+            ->select(['users.name',
+                'users.email',
+                'clients.mobile',
+                'clients.country',
+                'clients.gender'])
+            ->Where("clients.approved_by", $receptionist_current_id);
+
+
+        return datatables()->of($clients)->toJson();
     }
 
     /**
@@ -29,7 +43,7 @@ class ApprovedClientsDataTablesApproveController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -40,7 +54,7 @@ class ApprovedClientsDataTablesApproveController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -51,7 +65,7 @@ class ApprovedClientsDataTablesApproveController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -62,8 +76,8 @@ class ApprovedClientsDataTablesApproveController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -74,7 +88,7 @@ class ApprovedClientsDataTablesApproveController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

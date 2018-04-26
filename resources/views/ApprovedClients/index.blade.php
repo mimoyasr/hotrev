@@ -25,31 +25,6 @@
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
 
 
-    <script type="text/javascript" charset="utf-8">
-
-
-        function Approve(id) {
-            var target_url = '/pendingclients/' + id;
-            $.ajax({
-                type: 'PUT',
-                url: target_url, //Make sure your URL is correct
-                dataType: 'json', //Make sure your returning data type dffine as json
-                data: {"_token": "{{ csrf_token() }}"},
-                success: function (data) {
-
-
-                    $('#users-table').DataTable().draw(false)
-                    // alert(data.success);
-                },
-                error: function () {
-                    alert("Unexpected ERROR");
-
-                },
-            });
-        }
-    </script>
-
-
 </head>
 <body>
 <table class="table table-striped table-bordered dt-responsive nowrap" style="width:100%" id="users-table">
@@ -72,9 +47,16 @@
         $('#users-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: '{{Route('papprovedclientsdatatablesapprove.index')}}',
+            ajax: '{{Route('approvedclientsdatatables.index')}}',
             columns: [
-                {data: 'name', name: 'users.name', searchable: true},
+                {
+                    data: 'name',
+                    name: 'users.name',
+                    searchable: true,
+                    // render: function (data) {
+                    //     return '<h1>data</h1>';
+                    // }
+                },
                 {data: 'email', name: 'email', searchable: false},
                 {data: 'mobile', name: 'mobile', searchable: false},
                 {data: 'country', name: 'country', searchable: false},
@@ -85,6 +67,8 @@
 
         });
     });
+
+
 </script>
 
 
