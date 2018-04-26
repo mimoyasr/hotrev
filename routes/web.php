@@ -17,9 +17,18 @@ Route::get('/', function () {
 Route::resource('managers', 'ManagerController')->except(['show'])->middleware('auth','Admin');
 Route::get('/managers/getdata','ManagerController@getdata')->name('managers.data');
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('receiptionist','ReceptionistController@index')->name('receiptionist.index');
+Route::get('receiptionist', 'ReceptionistController@index')->name('receiptionist.index');
+
+
+
+
+
+
+
+
+
+
 //--------------------------------------------------------------------------------------//
 
 //---floors--//
@@ -43,4 +52,24 @@ Route::post('rooms/{id}', 'RoomController@update')->name('rooms.update');
 Route::delete('rooms/{id}', 'RoomController@delete')->name('rooms.delete');
 //--------------------------------------------------------//
 
+
+
+
+
+
+
+
+
+
+
+
+
+//------------------------------------------------------------------------------------//
+//approve pinding datatable
+Route::get('/pendingclientsdatatablesapprove', 'PendingClientsDataTablesApproveController@index')->name('pendingclientsdatatablesapprove.index');
+
+
+//approve pinding
+Route::get('/pendingclients', 'PendingClientsController@index')->name('pendingclients.index');
+Route::put('/pendingclients/{id}', 'PendingClientsController@update')->name('pendingclients.update');
 
