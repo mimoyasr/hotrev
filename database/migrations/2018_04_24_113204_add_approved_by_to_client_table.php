@@ -14,7 +14,7 @@ class AddApprovedByToClientTable extends Migration
     public function up()
     {
         Schema::table('clients', function (Blueprint $table) {
-            $table->unsignedInteger('approved_by');
+            $table->unsignedInteger('approved_by')->default(1);
             $table->foreign('approved_by')->references('id')->on('users');
         });
     }

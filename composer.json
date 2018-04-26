@@ -14,7 +14,8 @@
         "laravel/tinker": "^1.0",
         "spatie/laravel-permission": "^2.12",
         "yajra/laravel-datatables-oracle": "^8.4",
-        "tymon/jwt-auth": "^0.5.12"
+        "tymon/jwt-auth": "^0.5.12",
+        "webpatser/laravel-countries": "dev-master"
     },
     "require-dev": {
         "filp/whoops": "^2.0",
