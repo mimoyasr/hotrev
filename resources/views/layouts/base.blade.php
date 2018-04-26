@@ -92,7 +92,7 @@
 
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <li class="header">MAIN NAVIGATION</li>
-        <li class="active" >  <a href="managers" > <i class="fa fa-dashboard"></i> </i> Managers management </a></li>
+        <li class="active" >  <a href="{{ route('managers.index') }}" > <i class="fa fa-dashboard"></i> </i> Managers management </a></li>
         <br><br>
         <li class="active" >  <a href="receptionist" > <i class="fa fa-dashboard"></i> </i> Receptionists management </a></li>
         <br><br>
