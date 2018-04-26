@@ -30,5 +30,7 @@ Route::get('floors/create','FloorController@create')->name('floors.create');
 Route::post('floors/store','FloorController@store')->name('floors.store');
 
 
+Route::get('PendingClientsDataTablesApproveController','PendingClientsDataTablesApproveController@index')->name('PendingClientsDataTablesApproveController.index');
+
 
 
