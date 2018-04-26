@@ -18,15 +18,6 @@ Route::resource('managers', 'ManagerController')->except(['show'])->middleware('
 Route::get('/managers/getdata','ManagerController@getdata')->name('managers.data');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('receiptionist', 'ReceptionistController@index')->name('receiptionist.index');
-
-
-
-
-
-
-
-
 
 
 //---receiptionist---//
