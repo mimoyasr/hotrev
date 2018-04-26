@@ -24,7 +24,7 @@ class StoreManagerRequest extends FormRequest
     public function rules()
     {
         return [
-            'national_id'=> 'unique:managers.national_id',
+            'national_id'=> 'unique:managers',
             
         ];
     }

@@ -19,8 +19,6 @@ Route::resource('managers', 'ManagerController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-//---receiptionist---//
 Route::get('receiptionist','ReceptionistController@index')->name('receiptionist.index');
 //--------------------------------------------------------------------------------------//
 

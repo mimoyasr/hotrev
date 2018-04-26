@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Manager;
 use App\User;
 use App\Createdby;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\EditManagerRequest;
 use App\Http\Requests\StoreManagerRequest;
@@ -18,7 +19,6 @@ class ManagerController extends Controller
      */
     public function index()
     {
-
         $manager=Manager::all();
         return view("manager.index",[
             "managers"=> $manager
@@ -43,21 +43,22 @@ class ManagerController extends Controller
      */
     public function store(StoreManagerRequest $request)
     {
-        /**
-         * [
-         * name,
-         * email,
-         * password,
-         * photo,
-         * national_id
-         * ]
-         */
         $data = $request->all();
+        if($request->hasFile('photo')){
+            $photo = $request->file('photo');
+            $filename = time().'.'.$photo->getClientOriginalExtension();
+            $data['photo'] = $filename;
+            $destinationPath = public_path('uploads');
+            if(!$photo->move($destinationPath, $filename)){
+                return 'Error saving the file.';
+            }
+        }
         $user = User::create($data);
         $data['user_id'] = $user->id ;
         $manager = Manager::create($data);
         Createdby::create(['creator' => Auth::id() , 'created_by' => $manager->id]);
-        $manager->assignRole('Manager');
+        // $manager->assignRole('Manager');
+        return redirect(route('managers.index'));
     }
 
     /**
@@ -92,7 +93,7 @@ class ManagerController extends Controller
     public function update(EditManagerRequest $request, Manager $manager)
     {
         $manager->update($request->all());
-        return redirect(route('manager.index'));
+        return redirect(route('managers.index'));
     }
 
     /**
@@ -104,6 +105,6 @@ class ManagerController extends Controller
     public function destroy(Manager $manager)
     {
         $manager->delete();
-        return redirect(route('manager.index'));
+        return redirect(route('managers.index'));
     }
 }

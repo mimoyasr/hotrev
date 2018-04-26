@@ -17,15 +17,15 @@
       <tbody>
     @foreach($managers as $manager)
         <tr>
-            td>{{ $manager->user->name }}</td>
+            <td>{{ $manager->user->name }}</td>
           <td>{{ $manager->user->email }}</td>
           <td>{{ $manager->id }}</td>
           <td>{{ $manager->national_id }}</td>
-          <td>{{ $manager->photo}}</td>
+          <td><img src='{{asset("/uploads/{$manager->photo}")}}'/></td>
     
           <td>
-            <button type="button" class="btn btn-info">View</button>
-            <button type="button" class="btn btn-primary">Edit</button>
+            <a href="/managers/{{$manager->id}}/edit" class="btn btn-primary" > Edit </a>
+            <a href="/managers/{{$manager->id}}/delete" class="btn btn-danger" > Delete </a>
 
           </td>
           
