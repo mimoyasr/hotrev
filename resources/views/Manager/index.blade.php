@@ -21,8 +21,9 @@
           <td>{{ $manager->user->email }}</td>
           <td>{{ $manager->id }}</td>
           <td>{{ $manager->national_id }}</td>
-          <td><img src='{{asset("/uploads/{$manager->photo}")}}'/></td>
-    
+          <td> 
+            <img src='{{ asset("/uploads/$manager->photo") }}' width="100px" height="100px" />
+          </td>
           <td>
             <a href="/managers/{{$manager->id}}/edit" class="btn btn-primary" > Edit </a>
             <a href="/managers/{{$manager->id}}/delete" class="btn btn-danger" > Delete </a>
