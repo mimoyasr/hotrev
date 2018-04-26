@@ -29,6 +29,15 @@ Route::get('receiptionist', 'ReceptionistController@index')->name('receiptionist
 
 
 
+//---receiptionist---//
+Route::get('receiptionists','ReceptionistController@index')->name('receiptionists.index');
+Route::get('receiptionists/getdata','ReceptionistController@getdata')->name('receiptionists.data');
+Route::get('receiptionists/create','ReceptionistController@create')->name('receiptionists.create');
+Route::post('receiptionists/store','ReceptionistController@store')->name('receiptionists.store');
+Route::get('receiptionists/{id}/edit', 'ReceptionistController@edit')->name('receiptionists.edit');
+Route::post('receiptionists/{id}', 'ReceptionistController@update')->name('receiptionists.update');
+Route::get('receiptionists/{id}/banning', 'ReceptionistController@banUnban')->name('receiptionists.banUnban');
+Route::delete('receiptionists/{id}', 'ReceptionistController@delete')->name('receiptionists.delete');
 //--------------------------------------------------------------------------------------//
 
 //---floors--//

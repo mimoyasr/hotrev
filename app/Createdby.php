@@ -8,7 +8,7 @@ class Createdby extends Model
 {
     protected $table = "createdbies";
     protected $fillable = [
-        'creator',
+        'creater',
         'created_by',
     ];
 }
