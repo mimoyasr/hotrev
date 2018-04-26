@@ -15,7 +15,7 @@ class AddIsApprovedToClientTable extends Migration
     {
         Schema::table('clients', function (Blueprint $table) {
             //
-            $table->unsignedInteger('is_approved')->default(0);;
+            $table->unsignedInteger('is_approved')->default(0);
         });
     }
 
