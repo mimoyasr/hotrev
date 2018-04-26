@@ -15,8 +15,8 @@ class CreateCreatedbiesTable extends Migration
     {
         Schema::create('createdbies', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('creater');
-            $table->foreign('creater')->references('id')->on('users');
+            $table->unsignedInteger('creator');
+            $table->foreign('creator')->references('id')->on('users');
             $table->unsignedInteger('created_by');
             $table->foreign('created_by')->references('id')->on('users');
             $table->timestamps();
