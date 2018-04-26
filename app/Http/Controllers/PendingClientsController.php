@@ -13,7 +13,7 @@ class PendingClientsController extends Controller
      */
     public function index()
     {
-        //
+        return view('PendingClients.index');
     }
 
     /**
