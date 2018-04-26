@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Client;
+use App\User;
 use Auth;
+use App\Notifications\ApprovalNotification;
 
 class PendingClientsController extends Controller
 {
@@ -77,12 +79,20 @@ class PendingClientsController extends Controller
             $client->is_approved = 1;
             $client->approved_by = $approved_by_id;
             $client->save();
-            return response()->json(['success' => 'success'], 200);
 
+            //send notification
+            $client_in_user=User::find($client->user_id);
+            $client_in_user->notify(new ApprovalNotification);
+
+
+
+
+            return response()->json(['success' => 'success'], 200);
 
         } catch (Exception $e) {
             return response()->json(['error' => 'invalid'], 401);
         }
+
     }
 
     /**
