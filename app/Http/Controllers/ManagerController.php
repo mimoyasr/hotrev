@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use App\Manager;
 use App\User;
 use App\Createdby;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\EditManagerRequest;
 use App\Http\Requests\StoreManagerRequest;
-use Image;
 
 class ManagerController extends Controller
 {
@@ -19,9 +19,8 @@ class ManagerController extends Controller
      */
     public function index()
     {
-
         $manager=Manager::all();
-        return view("Manager.index",[
+        return view("manager.index",[
             "managers"=> $manager
         ]);
     }
@@ -32,8 +31,8 @@ class ManagerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    { 
-        return view ("Manager.create");
+    {
+        return view ("manager.create");
     }
 
     /**
@@ -44,7 +43,6 @@ class ManagerController extends Controller
      */
     public function store(StoreManagerRequest $request)
     {
-       
         $data = $request->all();
         if($request->hasFile('photo')){
             $photo = $request->file('photo');
@@ -57,9 +55,8 @@ class ManagerController extends Controller
         }
         $user = User::create($data);
         $data['user_id'] = $user->id ;
-       
         $manager = Manager::create($data);
-        // Createdby::create(['creator' => Auth::id() , 'created_by' => $manager->id]);
+        Createdby::create(['creator' => Auth::id() , 'created_by' => $manager->id]);
         // $manager->assignRole('Manager');
         return redirect(route('managers.index'));
     }
@@ -83,7 +80,7 @@ class ManagerController extends Controller
      */
     public function edit(Manager $manager)
     {
-        return view("Manager.edit",["managers"=>$manager]);
+        return view("manager.edit",["managers"=>$manager]);
     }
 
     /**
