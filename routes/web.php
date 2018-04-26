@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::resource('managers', 'ManagerController')->except(['show'])->middleware('auth','Admin');
+Route::get('/managers/getdata','ManagerController@getdata')->name('managers.data');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('receiptionist', 'ReceptionistController@index')->name('receiptionist.index');
