@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class ApprovalNotification extends Notification
+class ApprovalNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -41,7 +41,7 @@ class ApprovalNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('your Registration is approved. you cant login now and make reservations')
+                    ->line('your Registration is approved. you can login now and make reservations')
                     ->action('Hotel website', url('/'))
                     ->line('Thank you for using online system');
     }

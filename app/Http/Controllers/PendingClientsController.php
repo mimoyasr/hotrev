@@ -79,9 +79,13 @@ class PendingClientsController extends Controller
             $client->is_approved = 1;
             $client->approved_by = $approved_by_id;
             $client->save();
+
             //send notification
             $client_in_user=User::find($client->user_id);
             $client_in_user->notify(new ApprovalNotification);
+
+
+
 
             return response()->json(['success' => 'success'], 200);
 
