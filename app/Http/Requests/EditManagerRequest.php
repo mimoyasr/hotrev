@@ -25,8 +25,11 @@ class EditManagerRequest extends FormRequest
     public function rules()
     {
         return [
-            'national_id'=>  Rule::unique('mangers')->ignore($this->id)
-
+            'name' => 'required|string|max:255',
+            'email' => [Rule::unique('users')->ignore($this->user_id),'required','string','email','max:255'],
+            'password' => 'required|string|min:6',
+            'national_id'=> Rule::unique('managers')->ignore($this->id),
+            'photo'=>'mimes:jpeg,jpg'
         ];
     }
 }

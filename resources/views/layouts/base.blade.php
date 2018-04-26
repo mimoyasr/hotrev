@@ -91,8 +91,15 @@
     <section class="sidebar">
 
       <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">MAIN NAVIGATION</li>
+      <li class="header">MAIN NAVIGATION</li>
+        <li class="active" >  <a href="managers" > <i class="fa fa-dashboard"></i> </i> Managers management </a></li>
+        <br><br>
+        <li class="active" >  <a href="receptionist" > <i class="fa fa-dashboard"></i> </i> Receptionists management </a></li>
+        <br><br>
+        <li class="active" >  <a href="clients" > <i class="fa fa-dashboard"></i> </i> Clients management </a></li>
+
+        {{--  <ul class="sidebar-menu" data-widget="tree">
+        
         <li class="active treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
@@ -142,7 +149,7 @@
             <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
             <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
           </ul>
-        </li>
+        </li>  --}}
 
        </ul>
     </section>
