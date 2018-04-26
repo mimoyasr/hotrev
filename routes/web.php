@@ -21,20 +21,17 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::get('receiptionist','ReceptionistController@index')->name('receiptionist.index');
+Route::get('receiptionist', 'ReceptionistController@index')->name('receiptionist.index');
 
-Route::get('floor','FloorController@index')->name('Floor.index');
+Route::get('floor', 'FloorController@index')->name('Floor.index');
 
-Route::get('floors','FloorController@index')->name('floors.index');
-Route::get('floors/create','FloorController@create')->name('floors.create');
-Route::post('floors/store','FloorController@store')->name('floors.store');
-
-
+Route::get('floors', 'FloorController@index')->name('floors.index');
+Route::get('floors/create', 'FloorController@create')->name('floors.create');
+Route::post('floors/store', 'FloorController@store')->name('floors.store');
 
 
-
-Route::get('/pendingclientsdatatablesapprove','PendingClientsDataTablesApproveController@index')->name('pendingclientsdatatablesapprove.index');
-Route::get('/pendingclients','PendingClientsController@index')->name('pendingclients.index');
-Route::put('/pendingclients/{id}','PendingClientsController@update')->name('pendingclients.update');
+Route::get('/pendingclientsdatatablesapprove', 'PendingClientsDataTablesApproveController@index')->name('pendingclientsdatatablesapprove.index');
+Route::get('/pendingclients', 'PendingClientsController@index')->name('pendingclients.index');
+Route::put('/pendingclients/{id}', 'PendingClientsController@update')->name('pendingclients.update');
 
 

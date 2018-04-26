@@ -13,34 +13,35 @@
     </style>
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css
 "/>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.bootstrap4.min.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.bootstrap4.min.css"/>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
 
 
-
     <script type="text/javascript" charset="utf-8">
 
 
         function Approve(id) {
-            var target_url='/pendingclients/'+id;
+            var target_url = '/pendingclients/' + id;
             $.ajax({
                 type: 'PUT',
                 url: target_url, //Make sure your URL is correct
                 dataType: 'json', //Make sure your returning data type dffine as json
                 data: {"_token": "{{ csrf_token() }}"},
-                success: function(data) {
+                success: function (data) {
 
 
                     $('#users-table').DataTable().draw(false)
                     // alert(data.success);
                 },
-                error: function() {
+                error: function () {
                     alert("Unexpected ERROR");
 
                 },
@@ -51,7 +52,7 @@
 
 </head>
 <body>
-<table class="table table-striped table-bordered dt-responsive nowrap"  style="width:100%" id="users-table">
+<table class="table table-striped table-bordered dt-responsive nowrap" style="width:100%" id="users-table">
     <thead>
     <tr>
         <th>Id</th>
@@ -71,7 +72,7 @@
         $('#users-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: '{{Route('PendingClientsDataTablesApprove.index')}}',
+            ajax: '{{Route('pendingclientsdatatablesapprove.index')}}',
             columns: [
                 {data: 'id', name: 'clients.id', searchable: true},
                 {data: 'name', name: 'users.name', searchable: true},
