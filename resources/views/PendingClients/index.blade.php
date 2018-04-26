@@ -28,7 +28,7 @@
 
 
         function Approve(id) {
-            var target_url='/receptionistsoperations/'+id;
+            var target_url='/pendingclients/'+id;
             $.ajax({
                 type: 'PUT',
                 url: target_url, //Make sure your URL is correct
@@ -40,8 +40,8 @@
                     $('#users-table').DataTable().draw(false)
                     // alert(data.success);
                 },
-                error: function(data) {
-                    alert(data.error);
+                error: function() {
+                    alert("Unexpected ERROR");
 
                 },
             });
