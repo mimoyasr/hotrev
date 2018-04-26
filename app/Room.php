@@ -4,10 +4,27 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Cviebrock\EloquentSluggable\Sluggable;
+
+use App\Floor;
+
+
 class Room extends Model
 {
-    public function user()
+    protected $fillable = [
+        'name',
+        'capacity',
+        'price',
+        'floor_id',
+         'number',
+         'created_by',
+         
+    ];
+
+    public function floor()
     {
-        return $this->belongsToMany(User::class, 'reservations');
+        //User::class == 'App\User'
+        return $this->belongsTo(Floor::class);
     }
+    
 }

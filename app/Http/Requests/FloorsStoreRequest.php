@@ -28,8 +28,6 @@ class FloorsStoreRequest extends FormRequest
         return [
             //
             'name' => 'required|min:3|unique:floors',
-            //'nbumber' => 'required',
-            //'created_by' => 'required',
         ];
     }
 }
