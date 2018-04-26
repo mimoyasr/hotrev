@@ -100,11 +100,11 @@ Route::put('/pendingclients/{id}', 'PendingClientsController@update')->name('pen
 
 //------------------------------------------------------------------------------------//
 //Approved clients datatable
-Route::get('/pendingclientsdatatablesapprove', 'PendingClientsDataTablesApproveController@index')->name('pendingclientsdatatablesapprove.index');
+Route::get('/approvedclientsdatatablesapprove', 'ApprovedClientsDataTablesApproveController@index')->name('approvedclientsdatatablesapprove.index');
 
 
 //Approved clients
-Route::get('/approvedclients', 'ApprovedClientsController@index')->name('pendingclients.index');
+Route::get('/approvedclients', 'ApprovedClientsController@index')->name('approvedclients.index');
 
 //------------------------------------------------------------------------------------//
 
