@@ -14,7 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('managers', 'ManagerController');
+Route::resource('managers', 'ManagerController')->except(['show'])->middleware('auth','Admin');
 
 Auth::routes();
 

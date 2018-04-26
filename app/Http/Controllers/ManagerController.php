@@ -57,19 +57,10 @@ class ManagerController extends Controller
         $data['user_id'] = $user->id ;
         $manager = Manager::create($data);
         Createdby::create(['creator' => Auth::id() , 'created_by' => $manager->id]);
-        // $manager->assignRole('Manager');
+        $user->assignRole('Manager');
+        $user->assignRole('Receptionist');
+        $user->assignRole('Client');
         return redirect(route('managers.index'));
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Manager  $manager
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Manager $manager)
-    {
-        
     }
 
     /**
