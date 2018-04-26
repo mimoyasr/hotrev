@@ -71,7 +71,7 @@
         $('#users-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: 'http://laravel-project.local/PendingClientsDataTablesApproveController',
+            ajax: '{{Route('PendingClientsDataTablesApprove.index')}}',
             columns: [
                 {data: 'id', name: 'clients.id', searchable: true},
                 {data: 'name', name: 'users.name', searchable: true},
