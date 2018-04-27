@@ -54,14 +54,15 @@ class RoomController extends Controller
 
     public function store(RoomsStoreRequest $request)
     {
-       
-        Room::create([
+        
+                $room = Room::create([
             'number' =>$request->number,
             'capacity' => $request->capacity,
-            'price' => $request->price,
+            'price'=>$request->price,
             'floor_id' => $request->floor,
             'created_by' => Auth::id(),
         ]);
+       
         return redirect(route('rooms.index')); 
      }
 
@@ -94,7 +95,10 @@ class RoomController extends Controller
     {
         
          Room::find($id)->delete();
-         return redirect(route('rooms.index')); 
+         
+         return json_encode([
+            "status"=> 1
+            ]);
     }
 
 }

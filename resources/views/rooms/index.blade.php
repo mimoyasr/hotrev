@@ -56,12 +56,16 @@ $(document).on('click','.delete',function(){
             '_token' : '{{csrf_token()}}',
             '_method':'DELETE'
         },
-        sucsess: res => {
+        success: res => {
             console.log("here");
             console.log(res);
-            res = JSON.parce(res);
+            res = JSON.parse(res);
+            console.log(res);
             if(res.status){
-                $(self).parents('tr').remove();
+               
+                $('#users-table').DataTable().ajax.reload();
+              
+               
             }
         }
     });
