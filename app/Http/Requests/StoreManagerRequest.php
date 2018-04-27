@@ -24,8 +24,11 @@ class StoreManagerRequest extends FormRequest
     public function rules()
     {
         return [
-            'national_id'=> 'unique:managers.national_id',
-            
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6',
+            'national_id'=> 'unique:managers',
+            'photo'=>'mimes:jpeg,jpg,png'
         ];
     }
 }

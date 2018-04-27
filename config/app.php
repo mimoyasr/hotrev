@@ -149,6 +149,9 @@ return [
         Yajra\Datatables\DatatablesServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
         Cog\Laravel\Ban\Providers\BanServiceProvider::class,
+        Webpatser\Countries\CountriesServiceProvider::class,
+
+
         /*
          * Package Service Providers...
          */
@@ -161,6 +164,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
 
     ],
 
@@ -213,7 +217,7 @@ return [
         'Datatables' => Yajra\Datatables\Facades\Datatables::class,
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
-
+        'Countries' => Webpatser\Countries\CountriesFacade::class,
     ],
 
 ];

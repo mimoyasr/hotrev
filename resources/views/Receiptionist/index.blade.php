@@ -1,7 +1,7 @@
 
 <div class="col-md-12 text-center"> 
 
-<button type="button" class="btn btn-success" onclick="window.location='{{ url("") }}'">Create Post</button>
+<button type="button" class="btn btn-success" onclick="window.location='{{ url("") }}'">Create Receiptionist</button>
 
 </div>
 
@@ -30,7 +30,7 @@
       <td>
         <button type="button" class="btn btn-info">View</button>
         <button type="button" class="btn btn-primary">Edit</button>
-        <form action="/posts/{{$post->id}}" method="post">
+        <form action="" method="post">
           {{csrf_field()}}
       
 {{ method_field('DELETE') }}
@@ -41,13 +41,7 @@
     </tr>
   </tbody>
 </table>
-<nav aria-label="Page navigation example">
-  <ul class="pagination">
-  
-    {{ $posts->links() }}
-    
-  </ul>
-</nav>
+
 
 
 </div>

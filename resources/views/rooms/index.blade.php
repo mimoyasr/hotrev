@@ -16,6 +16,7 @@
                 <th>Capacity</th>
                 <th>price</th>
                 <th>Floor</th>
+                <th>Is Reserved</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -39,6 +40,8 @@ $(function() {
             { data: 'capacity', name: 'capacity' },
             { data: 'price', name: 'price' },
             { data: 'floor.name', name: 'floor_id' },
+            { data: 'floor_id', name: 'floor_id' },
+            { data: 'is_reserved', name: 'is_reserved' },
             { data: 'action', name: 'action', orderable: false, searchable: false }
         ]
     });
