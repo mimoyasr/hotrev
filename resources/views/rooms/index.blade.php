@@ -38,7 +38,7 @@ $(function() {
             { data: 'number', name: 'number' },
             { data: 'capacity', name: 'capacity' },
             { data: 'price', name: 'price' },
-            { data: 'floor_id', name: 'floor_id' },
+            { data: 'floor.name', name: 'floor_id' },
             { data: 'action', name: 'action', orderable: false, searchable: false }
         ]
     });

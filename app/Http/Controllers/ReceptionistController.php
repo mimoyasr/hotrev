@@ -36,11 +36,9 @@ class ReceptionistController extends Controller
 
     public function getdata()
     {
-     
-
-        return Datatables::of(Receptionist::query())       
-        ->addColumn('action', function($query){
-        return view('receiptionists.action',['id'=>$query->id,'flagBan'=>$query->user->banned_at,'user_id'=>$query->user_id]);  
+        $respe = Receptionist::with('user')->get();
+        return Datatables::of($respe)->addColumn('action', function($respe){
+        return view('receiptionists.action',['id'=>$respe->id,'flagBan'=>$respe->user->banned_at,'user_id'=>$respe->id]);  
             
     })->rawcolumns(['action']) ->make(true);
 }
@@ -73,6 +71,8 @@ class ReceptionistController extends Controller
         'created_by' =>$user->id,
         //photo
     ]);
+
+      $user->assignRole('Receptionist');
     return redirect(route('receiptionists.index')); 
     }
 

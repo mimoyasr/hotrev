@@ -70,7 +70,7 @@ $(document).on('click','.delete',function(){
         },
 
         error: res => { 
-           ('#div_error').val(<strong>Success!</strong> Indicates a successful or positive action.); 
+           //('#div_error').val(<strong>Success!</strong> Indicates a successful or positive action.); 
     }   
         
         

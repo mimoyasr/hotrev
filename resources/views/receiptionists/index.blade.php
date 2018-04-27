@@ -34,8 +34,8 @@ $(function() {
         ajax: '{!! route('receiptionists.data') !!}',
         columns: [
             { data: 'id', name: 'id' },
-            { data: 'user_id', name: 'user_id' },
-            { data: 'user_id', name: 'user_id' },
+            { data: 'user.name', name: 'name' },
+            { data: 'user.email', name: 'email' },
             { data: 'created_at', name: 'created_at' },
             { data: 'action', name: 'action', orderable: false, searchable: false }
           

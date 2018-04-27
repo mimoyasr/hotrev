@@ -21,14 +21,14 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 //---receiptionist---//
-Route::get('receiptionists','ReceptionistController@index')->name('receiptionists.index');
-Route::get('receiptionists/getdata','ReceptionistController@getdata')->name('receiptionists.data');
-Route::get('receiptionists/create','ReceptionistController@create')->name('receiptionists.create');
-Route::post('receiptionists/store','ReceptionistController@store')->name('receiptionists.store');
-Route::get('receiptionists/{id}/edit', 'ReceptionistController@edit')->name('receiptionists.edit');
-Route::post('receiptionists/{id}', 'ReceptionistController@update')->name('receiptionists.update');
-Route::get('receiptionists/{id}/banning', 'ReceptionistController@banUnban')->name('receiptionists.banUnban');
-Route::delete('receiptionists/{id}', 'ReceptionistController@delete')->name('receiptionists.delete');
+Route::get('receiptionists','ReceptionistController@index')->name('receiptionists.index')->middleware('auth','Manager');
+Route::get('receiptionists/getdata','ReceptionistController@getdata')->name('receiptionists.data')->middleware('auth','Manager');
+Route::get('receiptionists/create','ReceptionistController@create')->name('receiptionists.create')->middleware('auth','Manager');
+Route::post('receiptionists/store','ReceptionistController@store')->name('receiptionists.store')->middleware('auth','Manager');
+Route::get('receiptionists/{id}/edit', 'ReceptionistController@edit')->name('receiptionists.edit')->middleware('auth','Manager');
+Route::post('receiptionists/{id}', 'ReceptionistController@update')->name('receiptionists.update')->middleware('auth','Manager');
+Route::get('receiptionists/{id}/banning', 'ReceptionistController@banUnban')->name('receiptionists.banUnban')->middleware('auth','Manager');
+Route::delete('receiptionists/{id}', 'ReceptionistController@delete')->name('receiptionists.delete')->middleware('auth','Manager');
 //--------------------------------------------------------------------------------------//
 
 //---floors--//
