@@ -23,6 +23,7 @@ Route::middleware('auth','role:Admin')->resource('managers', 'ManagerController'
 Route::resource('clients', 'ClientController')->except(['show'])->middleware('auth','role:Admin');
 Route::get('clients/getdata','ClientController@getdata')->name('clients.data');
 Route::get('/resrvations/rooms/{id}','ReservationController@create')->name('reservations.create');
+Route::post('resrvations/store/{id}','ReservationController@store')->name('resrvations.store');
 
 Route::get('/managers/getdata','ManagerController@getdata')->name('managers.data');
 Auth::routes();

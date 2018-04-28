@@ -24,14 +24,15 @@
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-
-
-                        <form accept-charset="UTF-8" action='/reservations/{{$room->id}}' class="require-validation"
+                        
+                        <form accept-charset="UTF-8" action="/resrvations/store/{{ $room_id }}" class="require-validation"
                               data-cc-on-file="false"
-                              data-stripe-publishable-key="pk_test_z3sI6Px0jejXktcyKVO7fcO9"
+                              data-stripe-publishable-key="pk_test_ZLKERs9C9LCV3iNYWrqcM96q"
                               id="payment-form" method="post">
                             {{ csrf_field() }}
 
+                             <input type="hidden" name="client_id" value='{{ $client->id }}' /> 
+                            <input type="hidden" name="room_id" value='{{ $room_id }}' />
                             <div class='form-row'>
                                 <div class='col-xs-12 form-group required'>
                                     <br>
@@ -43,10 +44,10 @@
                             <div class='form-row'>
                                 <div class='col-xs-12 form-group  required'>
                                     <label class='control-label'> Number Of Companions :</label> <input
-                                        autocomplete='off' class='form-control Paid Price' size='20'  max="{{$room->capacity}}" placeholder="Please Enter Number Of Companions"
+                                        autocomplete='off' class='form-control Paid Price' size='20'  placeholder="Please Enter Number Of Companions"
                                         name="no_companions"	type="number">
                                 </div>
-                            </div>
+                             </div> 
 
                             <div class='form-row'>
                                 <div class='col-xs-12 form-group  required'>
@@ -54,6 +55,7 @@
                                         autocomplete='off' class='form-control card-number' size='20'
                                         type='text'>
                                 </div>
+                                
                             </div>
                             <div class='form-row'>
                                 <div class='col-xs-4 form-group cvc required'>

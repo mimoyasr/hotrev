@@ -114,7 +114,7 @@ class ClientController extends Controller
     ->addColumn('action', function($query){
     $ret =  "<div class='text-center' >
      <form method='GET' action='/resrvations/rooms/$query->number' >
-     <button type='submit' target='".$query->number."' class='reserve btn btn-primary' >RESERVE</button>
+     <button type='submit' value='".$query->number."' class='reserve btn btn-primary' >RESERVE</button>
      </form>
      </div>";
         return $ret;
