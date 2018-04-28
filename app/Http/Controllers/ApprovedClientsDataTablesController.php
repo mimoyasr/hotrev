@@ -4,11 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Client;
-use App\User;
 use Auth;
-use App\Notifications\ApprovalNotification;
 
-class PendingClientsController extends Controller
+class ApprovedClientsDataTablesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +15,19 @@ class PendingClientsController extends Controller
      */
     public function index()
     {
-        return view('PendingClients.index');
+        $receptionist_current_id=Auth::user()->id;
+        $clients = Client::join('users',
+            'clients.user_id',
+            '=', 'users.id')
+            ->select(['users.name',
+                'users.email',
+                'clients.mobile',
+                'clients.country',
+                'clients.gender'])
+            ->Where("clients.approved_by", $receptionist_current_id);
+
+
+        return datatables()->of($clients)->toJson();
     }
 
     /**
@@ -72,24 +82,7 @@ class PendingClientsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $approved_by_id = Auth::user()->id;
-
-        try {
-            $client = client::findOrFail($id);
-            $client->is_approved = 1;
-            $client->approved_by = $approved_by_id;
-            $client->save();
-
-            //send notification
-            $client_in_user=User::find($client->user_id);
-            $client_in_user->notify(new ApprovalNotification);
-
-            return response()->json(['success' => 'success'], 200);
-
-        } catch (Exception $e) {
-            return response()->json(['error' => 'invalid'], 401);
-        }
-
+        //
     }
 
     /**
@@ -100,21 +93,6 @@ class PendingClientsController extends Controller
      */
     public function destroy($id)
     {
-        try {
-
-            $client=client::find($id);
-            $client_in_user=$client->user_id;
-            $client ->delete();
-            User::find($client_in_user)->delete();
-
-
-
-//            $client_in_user=$client->user_id;
-//            Client::destroy($id);
-//            User::destroy($client_in_user);
-            return response()->json(['success' => 'success'], 200);
-        } catch (Exception $e) {
-            return response()->json(['error' => 'invalid'], 401);
-        }
+        //
     }
 }

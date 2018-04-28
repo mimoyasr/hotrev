@@ -3,34 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Client;
-use Auth;
 
-class PendingClientsDataTablesApproveController extends Controller
+class ApprovedClientsController extends Controller
 {
-
     /**
-     * Process datatables ajax request.
+     * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $clients = Client::join('users', 'clients.user_id', '=', 'users.id')
-            ->select(['clients.id', 'users.name', 'users.email', 'clients.created_at', 'clients.updated_at'])->Where("clients.is_approved", 0);
-
-
-        return datatables()->of($clients)->addColumn(
-            'action',
-            function ($user) {
-                return '<input type="button" id= "btnSelector" class="btn  btn-primary" value="approve" onclick=Approve(' . $user->id . ')>   <input type="button" target= '. $user->id .' class="btn  btn-danger" value="delete" >  ';
-            })->toJson();
-
-
-
-
-
-
+        return view('ApprovedClients.index');
     }
 
     /**
@@ -46,7 +29,7 @@ class PendingClientsDataTablesApproveController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -57,7 +40,7 @@ class PendingClientsDataTablesApproveController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -68,7 +51,7 @@ class PendingClientsDataTablesApproveController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -79,8 +62,8 @@ class PendingClientsDataTablesApproveController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -91,7 +74,7 @@ class PendingClientsDataTablesApproveController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
