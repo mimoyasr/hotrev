@@ -27,14 +27,14 @@ Route::get('/error',function(){
 })->name('error');
 
 //---receiptionist---//
-Route::get('receiptionists','ReceptionistController@index')->name('receiptionists.index');
-Route::get('receiptionists/getdata','ReceptionistController@getdata')->name('receiptionists.data');
-Route::get('receiptionists/create','ReceptionistController@create')->name('receiptionists.create');
-Route::post('receiptionists/store','ReceptionistController@store')->name('receiptionists.store');
-Route::get('receiptionists/{id}/edit', 'ReceptionistController@edit')->name('receiptionists.edit');
-Route::post('receiptionists/{id}', 'ReceptionistController@update')->name('receiptionists.update');
-Route::get('receiptionists/{id}/banning', 'ReceptionistController@banUnban')->name('receiptionists.banUnban');
-Route::delete('receiptionists/{id}', 'ReceptionistController@delete')->name('receiptionists.delete');
+Route::get('receiptionists','ReceptionistController@index')->name('receiptionists.index')->middleware('auth','role:Admin|Manager','forbid-banned-user');
+Route::get('receiptionists/getdata','ReceptionistController@getdata')->name('receiptionists.data')->middleware('auth','role:Admin|Manager','forbid-banned-user');
+Route::get('receiptionists/create','ReceptionistController@create')->name('receiptionists.create')->middleware('auth','role:Admin|Manager','forbid-banned-user');
+Route::post('receiptionists/store','ReceptionistController@store')->name('receiptionists.store')->middleware('auth','role:Admin|Manager','forbid-banned-user');
+Route::get('receiptionists/{id}/edit', 'ReceptionistController@edit')->name('receiptionists.edit')->middleware('auth','role:Admin|Manager','forbid-banned-user');
+Route::post('receiptionists/{id}', 'ReceptionistController@update')->name('receiptionists.update')->middleware('auth','role:Admin|Manager','forbid-banned-user');
+Route::get('receiptionists/{id}/banning', 'ReceptionistController@banUnban')->name('receiptionists.banUnban')->middleware('auth','role:Admin|Manager','forbid-banned-user');
+Route::delete('receiptionists/{id}', 'ReceptionistController@delete')->name('receiptionists.delete')->middleware('auth','role:Admin|Manager','forbid-banned-user');
 //--------------------------------------------------------------------------------------//
 
 //---floors--//
@@ -57,15 +57,6 @@ Route::get('rooms/{id}/edit', 'RoomController@edit')->name('rooms.edit');
 Route::post('rooms/{id}', 'RoomController@update')->name('rooms.update');
 Route::delete('rooms/{id}', 'RoomController@delete')->name('rooms.delete');
 //--------------------------------------------------------//
-
-
-
-
-
-
-
-
-
 
 
 

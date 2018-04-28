@@ -37,7 +37,7 @@ class ReceptionistController extends Controller
        if(Auth::id() == $respe->created_by)
        {      
 
-        return view('receiptionists.action',['id'=>$respe->id,'flagBan'=>$respe->user->banned_at,'user_id'=>$respe->id]);  
+        return view('receiptionists.action',['id'=>$respe->id,'flagBan'=>$respe->user->banned_at,'user_id'=>$respe->user_id]);  
        }
     })
     
@@ -115,9 +115,10 @@ class ReceptionistController extends Controller
     }
 
     public  function banUnban($id)
-{
-    
-   $user = User::find($id);
+{  
+    //dd("in banned fn ".$id);
+   $user = User::findorFail($id);
+    //dd($user);
    if($user->isBanned())
    {
     $user->unban();
