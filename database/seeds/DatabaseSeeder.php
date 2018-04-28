@@ -13,20 +13,28 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Role::create(['name' => 'Admin']);
-        Role::create(['name' => 'Manager']);
-        Role::create(['name' => 'Receptionist']);
-        Role::create(['name' => 'Client']);
+        // Role::create(['name' => 'Admin']);
+        // Role::create(['name' => 'Manager']);
+        // Role::create(['name' => 'Receptionist']);
+        // Role::create(['name' => 'Client']);
+        // User::create([
+        //     'name' => 'admin',
+        //     'email'=> 'admin@admin.com',
+        //     'password' => bcrypt(123456),
+        // ])
+        // ->assignRole('Admin')
+        // ->assignRole('Manager')
+        // ->assignRole('Receptionist')
+        // ->assignRole('Client');
         User::create([
-            'name' => 'admin',
-            'email'=> 'admin@admin.com',
+            'name' => 'Manger',
+            'email'=> 'man@man.com',
             'password' => bcrypt(123456),
         ])
-        ->assignRole('Admin')
         ->assignRole('Manager')
         ->assignRole('Receptionist')
         ->assignRole('Client');
-        $this->call('CountriesSeeder');
+       // $this->call('CountriesSeeder');
     }
     
 }
