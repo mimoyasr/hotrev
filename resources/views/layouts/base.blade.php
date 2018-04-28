@@ -64,10 +64,12 @@
       </a>
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
+        @guest
+        @else
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <span class="hidden-xs">User name</span>
+              <span class="hidden-xs"> {{ Auth::user()->name }}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- Menu Footer-->
@@ -76,9 +78,18 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
                 </div>
               </li>
+              @endguest
             </ul>
           </li>
         </ul>
@@ -97,6 +108,8 @@
         <li class="active" >  <a href="receiptionists" > <i class="fa fa-dashboard"></i> </i> Receptionists management </a></li>
         <br><br>
         <li class="active" >  <a href="floors" > <i class="fa fa-dashboard"></i> </i> Floors management </a></li>
+        <br><br>
+        <li class="active" >  <a href="rooms" > <i class="fa fa-dashboard"></i> </i> Rooms management </a></li>
         <br><br>
         <li class="active" >  <a href="clients" > <i class="fa fa-dashboard"></i> </i> Clients management </a></li>
 
