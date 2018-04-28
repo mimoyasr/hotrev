@@ -27,7 +27,7 @@ class RoomsStoreRequest extends FormRequest
             //
             'number'=> 'required|min:4|unique:rooms',
             'capacity'=> 'required|integer',
-            'price'=> 'required|integer',
+            'price'=> 'required|Numeric',
             'floor' => 'required|exists:floors,id'
         ];
     }

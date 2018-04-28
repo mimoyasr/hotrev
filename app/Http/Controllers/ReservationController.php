@@ -24,6 +24,7 @@ class ReservationController extends Controller
     public function index()
     {
         //
+        return view('reservations.index');
     }
 
     /**
@@ -123,4 +124,15 @@ class ReservationController extends Controller
     {
         //
     }
+
+    public function getdata()
+    {
+        $client = Client::where('user_id',Auth::id())->first();
+        // dd($client->user_id)
+        $resrvs = Reservation::with('room')->where('client_id',$client->id)->get();
+        // dd($resrvs);
+        return Datatables::of($resrvs)->make(true);
+    }
+
+
 }

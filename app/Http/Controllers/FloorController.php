@@ -7,6 +7,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Http\Request;
 
 use App\Floor;
+use App\User;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -36,11 +37,18 @@ class FloorController extends Controller
 
         return Datatables::of(Floor::query())
         ->addColumn('action', function($query){
+            if(Auth::User()->id == $query->created_by || Auth::User()->hasRole('Admin')){
         $ret =  "<a href='floors/" . $query->id . "/edit' class='btn btn-xs btn-primary'><i class='glyphicon glyphicon-edit'></i> Edit</a>";
         $ret .= "<button type='button' target='".$query->id."'  class='delete btn-xs btn btn-danger' > DELETE </button>";
        // $ret .= "<script>$('.delete').on('click',function(){console.log('here'); });</script>";
             return $ret;
-    })->rawcolumns(['action']) ->make(true);
+        }
+    })
+    ->addColumn('created_by',function($query){
+        $user = User::whereId($query->created_by)->first();
+        return $user->name;
+    })
+    ->rawcolumns(['action']) ->make(true);
        
     }
     public function create()

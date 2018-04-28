@@ -34,10 +34,10 @@ class ReceptionistController extends Controller
         return Datatables::of($respe)
         
        ->addColumn('action', function($respe){
-       if(Auth::id() == $respe->created_by)
+       if(Auth::User()->id == $respe->created_by || Auth::User()->hasRole('Admin'))
        {      
 
-        return view('receiptionists.action',['id'=>$respe->id,'flagBan'=>$respe->user->banned_at,'user_id'=>$respe->id]);  
+        return view('receiptionists.action',['id'=>$respe->id,'flagBan'=>$respe->user->banned_at,'user_id'=>$respe->user_id]);  
        }
     })
     
@@ -111,13 +111,16 @@ class ReceptionistController extends Controller
     {
         
         Receptionist::find($id)->delete();
-         return redirect(route('receiptionists.index')); 
+        return json_encode([
+            "status"=> 1
+            ]);
     }
 
     public  function banUnban($id)
-{
-    
-   $user = User::find($id);
+{  
+    //dd("in banned fn ".$id);
+   $user = User::findorFail($id);
+    //dd($user);
    if($user->isBanned())
    {
     $user->unban();

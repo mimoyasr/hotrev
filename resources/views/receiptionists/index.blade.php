@@ -15,7 +15,9 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Created At</th>
+                @role('Admin')
                 <th>Created By</th>
+                @endrole
                 <th>Action</th>
             </tr>
         </thead>
@@ -38,7 +40,9 @@ $(function() {
             { data: 'user.name', name: 'name' },
             { data: 'user.email', name: 'email' },
             { data: 'created_at', name: 'created_at' },
+            @role('Admin')
             { data: 'created_by', name:'created_by' },
+            @endrole
             { data: 'action', name: 'action', orderable: false, searchable: false }
           
        
@@ -58,12 +62,13 @@ $(document).on('click','.delete',function(){
             '_token' : '{{csrf_token()}}',
             '_method':'DELETE'
         },
-        sucsess: res => {
-       
-            console.log(res);
-            res = JSON.parce(res);
+        success: res => {
+            
+            console.log("here1");
+            res = JSON.parse(res);
             if(res.status){
-                $(self).parent('tr').remove();
+                console.log("here2");
+                $('#users-table').DataTable().ajax.reload();
                
             }
         }

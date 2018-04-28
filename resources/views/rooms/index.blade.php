@@ -16,7 +16,9 @@
                 <th>Capacity</th>
                 <th>price</th>
                 <th>Floor</th>
-                <th>Is Reserved</th>
+                @role('Admin')
+                <th>Created By</th>
+                @endrole
                 <th>Action</th>
             </tr>
         </thead>
@@ -40,8 +42,9 @@ $(function() {
             { data: 'capacity', name: 'capacity' },
             { data: 'price', name: 'price' },
             { data: 'floor.name', name: 'floor_id' },
-            { data: 'floor_id', name: 'floor_id' },
-            { data: 'is_reserved', name: 'is_reserved' },
+            @role('Admin')
+            { data: 'created_by', name:'created_by' },
+            @endrole
             { data: 'action', name: 'action', orderable: false, searchable: false }
         ]
     });

@@ -54,7 +54,13 @@
                   <label>Select</label>
                   <select class="form-control" name="floor">
                   @foreach ($floors as $floor)  
-                    <option value={{$floor->id}}>{{$floor->name}}</option>
+                    <option value={{$floor->id}}
+                    
+                    @if($floor->id == $room->floor->id)
+                    selected
+                    @endif
+                    
+                    >{{$floor->name}}</option>
                     @endforeach
                   </select>
                 </div>

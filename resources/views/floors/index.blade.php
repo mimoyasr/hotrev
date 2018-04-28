@@ -1,10 +1,7 @@
 
 @extends('layouts.base')
 @section('content')
-<div class="alert alert-danger alert-dismissible" id="div_error">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  
-</div>
+
 <div class="col-md-12 text-center"> 
 
 <button type="button" class="btn btn-success" onclick="window.location='{{ url("floors/create") }}'">Create Floor</button>
@@ -18,6 +15,9 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Number</th>
+                @role('Admin')
+                <th>Created By</th>
+                @endrole
                 <th>Action</th>
             </tr>
         </thead>
@@ -39,6 +39,9 @@ $(function() {
             { data: 'id', name: 'id' },
             { data: 'name', name: 'name' },
             { data: 'nubmber', name: 'nubmber' },
+            @role('Admin')
+            { data: 'created_by', name:'created_by' },
+            @endrole
             { data: 'action', name: 'action', orderable: false, searchable: false }
         ]
     });

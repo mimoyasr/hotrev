@@ -28,7 +28,7 @@ class RoomUpdateRequest extends FormRequest
         return [
             //
             'capacity'=> 'required|integer',
-            'price'=> 'required|integer',
+            'price'=> 'required|Numeric',
             'floor' => 'required|exists:floors,id'
         ];
     }
