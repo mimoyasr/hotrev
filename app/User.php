@@ -8,6 +8,7 @@ use Cog\Laravel\Ban\Traits\Bannable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 
+use App\Receptionist;
 class User extends Authenticatable implements BannableContract
 {
     use Notifiable;
@@ -30,4 +31,9 @@ class User extends Authenticatable implements BannableContract
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function receiption(){
+
+        return $this->belongsTo(Receptionist::class);
+       }
 }

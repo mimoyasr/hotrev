@@ -15,6 +15,7 @@ class Receptionist extends Model
         'national_id',
         'user_id',
         'photo',
+        'created_by',
 
     ];
 
@@ -24,5 +25,8 @@ class Receptionist extends Model
             return $this->belongsTo(User::class);
            }
     
-
+           public function usercretad()
+           {
+             return $this->belongsTo(User::class);
+           }
 }

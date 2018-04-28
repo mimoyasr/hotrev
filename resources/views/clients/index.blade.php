@@ -1,6 +1,10 @@
 @extends("layouts.base")
 @section('content')
     
+<div class="col-md-12 text-center"> 
+
+  
+  </div>
 <br><br>
 
   <table class="table table-bordered" id="users-table">

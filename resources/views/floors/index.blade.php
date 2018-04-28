@@ -1,7 +1,10 @@
 
 @extends('layouts.base')
 @section('content')
-
+<div class="alert alert-danger alert-dismissible" id="div_error">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  
+</div>
 <div class="col-md-12 text-center"> 
 
 <button type="button" class="btn btn-success" onclick="window.location='{{ url("floors/create") }}'">Create Floor</button>
@@ -53,14 +56,25 @@ $(document).on('click','.delete',function(){
             '_token' : '{{csrf_token()}}',
             '_method':'DELETE'
         },
-        sucsess: res => {
+        success: res => {
             console.log("here");
             console.log(res);
-            res = JSON.parce(res);
+            res = JSON.parse(res);
             if(res.status){
-                $(self).parents('tr').remove();
+                $('#users-table').DataTable().ajax.reload();
             }
-        }
+            else
+            {
+                console.log("error");
+            }
+        },
+
+        error: res => { 
+           //('#div_error').val(<strong>Success!</strong> Indicates a successful or positive action.); 
+    }   
+        
+        
+    
     });
 });
 </script>

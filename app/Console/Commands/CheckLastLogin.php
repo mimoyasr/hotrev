@@ -4,6 +4,8 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\User;
+use carbon\Carbon as carbon;
+use App\Notifications\CheckUsNotification;
 
 class CheckLastLogin extends Command
 {
@@ -38,7 +40,15 @@ class CheckLastLogin extends Command
      */
     public function handle()
     {
-        //TODO add notification to users last login exceeded 30 days 
+        $now = Carbon::now()->timestamp;
+        $mon = 2952000;
+        $targ = $now - $mon ;
+        $users = User::where('last_action', '<', $targ)
+                     ->get('email');
+        foreach($users as $user){
+            $user->notify(new CheckUsNotification);
+        }
+
         echo "last login handler!! \n";
 
     }
