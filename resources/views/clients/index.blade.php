@@ -3,7 +3,6 @@
     
 <div class="col-md-12 text-center"> 
 
-  <button type="button" class="btn btn-success" onclick="window.location='{{ url("managers/create") }}'">Add Manager</button>
   
   </div>
 <br><br>

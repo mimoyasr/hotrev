@@ -116,8 +116,9 @@ class ReceptionistController extends Controller
 
     public  function banUnban($id)
 {  
-    
-   $user = User::find($id)->get();
+    //dd("in banned fn ".$id);
+   $user = User::findorFail($id);
+    //dd($user);
    if($user->isBanned())
    {
     $user->unban();

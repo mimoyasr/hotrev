@@ -150,21 +150,12 @@ return [
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
         Cog\Laravel\Ban\Providers\BanServiceProvider::class,
         Webpatser\Countries\CountriesServiceProvider::class,
-
-
-        /*
-         * Package Service Providers...
-         */
-
-        /*
-         * Application Service Providers...
-         */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Yajra\DataTables\DataTablesServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
 
     ],
 
