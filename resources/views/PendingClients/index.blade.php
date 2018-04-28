@@ -36,13 +36,38 @@
 
                 ],
 
-
             });
         });
+
+        $(document).on('click', '.btn-danger', function () {
+
+            let self = this;
+            let id = $(this).attr('target');
+            let conf = confirm("Are you sure ?");
+            if (conf)
+                $.ajax({
+                    url: `/pendingclients/${id}`,
+                    type: 'DELETE',
+                    data: {
+                        '_token': '{{csrf_token()}}',
+                        '_method': 'DELETE'
+                    },
+                    success: res => {
+
+                        if (res.sucess = "sucess") {
+                            $(self).parents('tr').remove();
+
+                        }
+                    }
+                });
+        });
+
     </script>
+
 @endpush
 
 @section('content')
+
     <table class="table table-striped table-bordered dt-responsive nowrap" style="width:100%" id="users-table">
         <thead>
         <tr>

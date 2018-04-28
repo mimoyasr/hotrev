@@ -84,9 +84,6 @@ class PendingClientsController extends Controller
             $client_in_user=User::find($client->user_id);
             $client_in_user->notify(new ApprovalNotification);
 
-
-
-
             return response()->json(['success' => 'success'], 200);
 
         } catch (Exception $e) {
@@ -103,6 +100,21 @@ class PendingClientsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+
+            $client=client::find($id);
+            $client_in_user=$client->user_id;
+            $client ->delete();
+            User::find($client_in_user)->delete();
+
+
+
+//            $client_in_user=$client->user_id;
+//            Client::destroy($id);
+//            User::destroy($client_in_user);
+            return response()->json(['success' => 'success'], 200);
+        } catch (Exception $e) {
+            return response()->json(['error' => 'invalid'], 401);
+        }
     }
 }

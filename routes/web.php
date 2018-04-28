@@ -97,7 +97,8 @@ Route::get('/pendingclients', 'PendingClientsController@index')
     ->name('pendingclients.index');
 Route::put('/pendingclients/{id}', 'PendingClientsController@update')
     ->name('pendingclients.update');
-
+Route::delete('/pendingclients/{id}', 'PendingClientsController@destroy')
+    ->name('pendingclients.destroy');
 
 //------------------------------------------------------------------------------------//
 //Approved clients datatable

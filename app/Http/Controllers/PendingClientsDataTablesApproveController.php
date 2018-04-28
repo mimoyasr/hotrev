@@ -23,8 +23,13 @@ class PendingClientsDataTablesApproveController extends Controller
         return datatables()->of($clients)->addColumn(
             'action',
             function ($user) {
-                return '<input type="button" id= "btnSelector" class="btn  btn-primary" value="approve" onclick=Approve(' . $user->id . ')> ';;
+                return '<input type="button" id= "btnSelector" class="btn  btn-primary" value="approve" onclick=Approve(' . $user->id . ')>   <input type="button" target= '. $user->id .' class="btn  btn-danger" value="delete" >  ';
             })->toJson();
+
+
+
+
+
 
     }
 
