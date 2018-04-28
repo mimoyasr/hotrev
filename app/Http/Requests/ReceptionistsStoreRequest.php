@@ -29,7 +29,7 @@ class ReceptionistsStoreRequest extends FormRequest
             //
             'name' => 'required',
             'email' => 'required|unique:users|email',
-            'national_id' => 'required|unique:receptionist',
+            'national_id' => 'required|unique:receptionist|Numeric',
             'password' => 'required|min:6',
         ];
     }
