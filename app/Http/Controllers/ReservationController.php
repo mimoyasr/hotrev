@@ -24,6 +24,8 @@ class ReservationController extends Controller
     public function create()
     {
         //
+        return view('reservations.create');
+        // return "hello from Reservation Controller";
     }
 
     /**
