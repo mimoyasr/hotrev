@@ -1,7 +1,5 @@
 @extends("layouts.base")
-
 @push('scripts')
-
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
@@ -29,24 +27,15 @@
 @endpush
 
 @section('content')
-
-
-<table class="table table-striped table-bordered dt-responsive nowrap" style="width:100%" id="users-table">
-    <thead>
-    <tr>
-
-        <th>Client Name</th>
-        <th>Email</th>
-        <th>Mobile</th>
-        <th>country</th>
-        <th>gender</th>
-
-    </tr>
-    </thead>
-</table>
-
-
-
-
-
+    <table class="table table-striped table-bordered dt-responsive nowrap" style="width:100%" id="users-table">
+        <thead>
+        <tr>
+            <th>Client Name</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>country</th>
+            <th>gender</th>
+        </tr>
+        </thead>
+    </table>
 @stop
