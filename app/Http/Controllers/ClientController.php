@@ -112,7 +112,11 @@ class ClientController extends Controller
         
     return Datatables::of(DB::table('rooms')->where('is_reserved',0)->get())
     ->addColumn('action', function($query){
-    $ret =  "<div class='text-center' > <button type='button' target='".$query->id."'  class=' btn btn-primary' > Reserve </button> </div>";
+    $ret =  "<div class='text-center' >
+     <form method='GET' action='/resrvations/rooms/$query->number' >
+     <button type='submit' value='".$query->number."' class='reserve btn btn-primary' >RESERVE</button>
+     </form>
+     </div>";
         return $ret;
     })
     ->rawcolumns(['action'])
