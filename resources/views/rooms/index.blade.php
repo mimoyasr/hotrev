@@ -39,6 +39,7 @@ $(function() {
             { data: 'number', name: 'number' },
             { data: 'capacity', name: 'capacity' },
             { data: 'price', name: 'price' },
+            { data: 'floor.name', name: 'floor_id' },
             { data: 'floor_id', name: 'floor_id' },
             { data: 'is_reserved', name: 'is_reserved' },
             { data: 'action', name: 'action', orderable: false, searchable: false }
@@ -58,12 +59,16 @@ $(document).on('click','.delete',function(){
             '_token' : '{{csrf_token()}}',
             '_method':'DELETE'
         },
-        sucsess: res => {
+        success: res => {
             console.log("here");
             console.log(res);
-            res = JSON.parce(res);
+            res = JSON.parse(res);
+            console.log(res);
             if(res.status){
-                $(self).parents('tr').remove();
+               
+                $('#users-table').DataTable().ajax.reload();
+              
+               
             }
         }
     });
