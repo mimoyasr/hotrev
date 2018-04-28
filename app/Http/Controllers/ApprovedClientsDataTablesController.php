@@ -15,7 +15,7 @@ class ApprovedClientsDataTablesController extends Controller
      */
     public function index()
     {
-        $receptionist_current_id=Auth::user()->id;//need some permission
+        $receptionist_current_id=Auth::user()->id;
         $clients = Client::join('users',
             'clients.user_id',
             '=', 'users.id')
