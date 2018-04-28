@@ -99,12 +99,31 @@ class RoomController extends Controller
 
     public function delete($id)
     {
-        
+         $reserve = Room::findorFail($id);
+         if($reserve->is_reserved == 0)
+         {
+            Room::find($id)->delete();
+         
+            return json_encode([
+               "status"=> 1
+               ]);
+         }
+         else{
+
+            return json_encode([
+               "status"=> 0
+               ]);
+               
+         }
+
+         console.log($reserve->is_reserved);
+         /*
          Room::find($id)->delete();
          
          return json_encode([
             "status"=> 1
             ]);
+            */
     }
 
 }
