@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Reservation;
 use Illuminate\Http\Request;
-
-
+use App\Client;
+use Auth;
+use DB;
+use App\Quotation;
 class ApprovedClientsReservationsDataTablesController extends Controller
 {
     /**
@@ -14,7 +17,30 @@ class ApprovedClientsReservationsDataTablesController extends Controller
      */
     public function index()
     {
-        //
+
+        $receptionist_current_id=Auth::user()->id;
+        //need some permission
+        $reservations = Reservation::join('clients',
+            'clients.id',
+            '=', 'client_id')
+            ->join('rooms',
+            'rooms.id',
+            '=', 'room_id')
+            ->select(['number',
+                'clients.mobile',
+                'clients.country',
+                'clients.gender',
+                'client_id',
+                'accompany',
+                'paid_price'
+                ])->Where("clients.approved_by" ,$receptionist_current_id);
+
+        return datatables()->of($reservations) ->addColumn('name',
+            function ($reservation_row) {
+                $client_name=$reservation_row->client->user->name;
+                return $client_name;
+            })->toJson();
+
     }
 
     /**

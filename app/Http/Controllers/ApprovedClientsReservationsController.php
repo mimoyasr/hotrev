@@ -13,7 +13,8 @@ class ApprovedClientsReservationsController extends Controller
      */
     public function index()
     {
-        //
+        return view('ApprovedClientsReservations.index');
+
     }
 
     /**

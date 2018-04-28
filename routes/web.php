@@ -112,7 +112,7 @@ Route::get('/approvedclients', 'ApprovedClientsController@index')
 //------------------------------------------------------------------------------------//
 
 //Approved clients datatable reservations
-Route::get('/approvedclientsreservations', 'ApprovedClientsReservationsDataTablesController@index')
+Route::get('/approvedclientsreservationsdatatables', 'ApprovedClientsReservationsDataTablesController@index')
     ->name('approvedclientsreservationsdatatables.index');
 
 
