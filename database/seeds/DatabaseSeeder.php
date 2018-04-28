@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Faker\Factory as Faker;
+use app\User;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,11 +13,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        Role::create(['name' => 'Admin']);
+        Role::create(['name' => 'Manager']);
+        Role::create(['name' => 'Receptionist']);
+        Role::create(['name' => 'Client']);
+        User::create([
             'name' => 'admin',
             'email'=> 'admin@admin.com',
             'password' => bcrypt(123456),
-        ]);
+        ])
+        ->assignRole('Admin')
+        ->assignRole('Manager')
+        ->assignRole('Receptionist')
+        ->assignRole('Client');
         $this->call('CountriesSeeder');
     }
     

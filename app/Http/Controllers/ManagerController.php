@@ -16,6 +16,7 @@ class ManagerController extends Controller
    
     public function index()
     {
+        return view('errors.404');
         $manager=Manager::all();
         return view("manager.index",[
             "managers"=> $manager
