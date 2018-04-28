@@ -31,6 +31,7 @@ class ReceptionistsStoreRequest extends FormRequest
             'email' => 'required|unique:users|email',
             'national_id' => 'required|unique:receptionist|Numeric',
             'password' => 'required|min:6',
+            'photo'=>'mimes:jpeg,jpg,png'
         ];
     }
 }

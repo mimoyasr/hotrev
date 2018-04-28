@@ -29,6 +29,7 @@ class ReceptionistsUpdateRequest extends FormRequest
             'email' => 'required|unique:receptionist,id|email',
             'national_id' => 'required|unique:receptionist,id|Numeric',
             'password' => 'required|min:6',
+            'photo'=>'mimes:jpeg,jpg,png'
         ];
     }
 }

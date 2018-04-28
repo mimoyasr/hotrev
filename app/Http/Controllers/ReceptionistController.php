@@ -57,6 +57,16 @@ class ReceptionistController extends Controller
 
     public function store(ReceptionistsStoreRequest $request)
     {
+        $photo ;
+        if($request->hasFile('photo')){
+            $photo = $request->file('photo');
+            $filename = time().'.'.$photo->getClientOriginalExtension();
+            $photo = $filename;
+            $destinationPath = public_path('uploads');
+            if(!$photo->move($destinationPath, $filename)){
+                return 'Error saving the file.';
+            }
+        }
         
       $user = User::create([
             'name' =>$request->name,
@@ -69,7 +79,7 @@ class ReceptionistController extends Controller
         'national_id' =>$request->national_id,
         'user_id' => $user->id,
         'created_by' => Auth::id(),
-        //photo
+        'photo' => $photo
     ]);
 
     // Createdby::create([
@@ -94,6 +104,16 @@ class ReceptionistController extends Controller
 
     public function update(ReceptionistsUpdateRequest $request)
     {
+        $photo ;
+        if($request->hasFile('photo')){
+            $photo = $request->file('photo');
+            $filename = time().'.'.$photo->getClientOriginalExtension();
+            $photo = $filename;
+            $destinationPath = public_path('uploads');
+            if(!$photo->move($destinationPath, $filename)){
+                return 'Error saving the file.';
+            }
+        }
         User::where('id', $request->user_id)->update(array(
             'name' =>$request->name,
             'email' => $request->email,
@@ -102,6 +122,7 @@ class ReceptionistController extends Controller
 
         Receptionist::where('id', $request->id)->update(array(
             'national_id' =>$request->national_id,
+            'photo' => $photo
         ));
         
         return redirect(route('receiptionists.index'));

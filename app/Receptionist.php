@@ -2,10 +2,8 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-
-
 use App\User;
+use Illuminate\Database\Eloquent\Model;
 
 class Receptionist extends Model
 {
@@ -19,14 +17,14 @@ class Receptionist extends Model
 
     ];
 
- 
-        public function user(){
+    public function user()
+    {
 
-            return $this->belongsTo(User::class);
-           }
-    
-           public function usercretad()
-           {
-             return $this->belongsTo(User::class);
-           }
+        return $this->belongsTo(User::class);
+    }
+
+    public function usercretad()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

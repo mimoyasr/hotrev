@@ -18,7 +18,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form class="form-horizontal" method="post" action="/receiptionists/store">
+            <form class="form-horizontal" method="post" action="/receiptionists/store" enctype="multipart/form-data" >
             {{csrf_field()}}
             <div class="box-body">
 
@@ -46,7 +46,7 @@
 
                 <div class="form-group">
                   <label for="exampleInputFile">File input</label>
-                  <input type="file" id="exampleInputFile">
+                  <input type="file" id="exampleInputFile" name="photo" >
 
                   <p class="help-block">Example block-level help text here.</p>
                 </div>
