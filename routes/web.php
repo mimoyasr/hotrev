@@ -16,9 +16,19 @@ use Illuminate\Support\Facades\Redirect;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::resource('managers', 'ManagerController')->except(['show'])->middleware('auth','Admin');
+
+Route::resource('clients', 'ClientController')->except(['show'])->middleware('auth','Admin');
 Route::middleware('auth','role:Admin')->resource('managers', 'ManagerController')->except(['show']);
 Route::resource('clients', 'ClientController')->except(['show'])->middleware('auth','role:Admin');
 Route::get('clients/getdata','ClientController@getdata')->name('clients.data');
+
+Route::get('/resrvations/rooms/{id}','ReservationController@create')->name('reservations.create');
+Route::get('/resrvations','ReservationController@index')->name('reservations.index');
+Route::get('/resrvations/getdata','ReservationController@getdata')->name('reservations.data');
+
+Route::post('resrvations/store/{id}','ReservationController@store')->name('resrvations.store');
+
 Route::get('/managers/getdata','ManagerController@getdata')->name('managers.data');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth','update','forbid-banned-user');

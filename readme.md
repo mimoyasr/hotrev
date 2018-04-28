@@ -22,3 +22,8 @@ run the commend :
 ```
 php artisan queue:work 
 ```
+=========================
+stripe:
+
+composer require stripe/stripe-php
+

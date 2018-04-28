@@ -38,29 +38,28 @@ $(function() {
         ]
     });
 });
-$(document).on('click','.delete',function(){
-    console.log("here");
-    let self = this ;
-    let id = $(this).attr('target');
-    let conf = confirm("Are you sure ?");
-    if(conf)
-    $.ajax({
-        url:`managers/${id}`,
-        type: 'POST',
-        data:{
-            '_token' : '{{csrf_token()}}',
-            '_method':'DELETE'
-        },
-        success: res => {
-            console.log("here");
-            console.log(res);
-            res = JSON.parse(res);
-            if(res.status){
-                $(self).parents('tr').remove();
-            }
-        }
-    });
-});
+// $(document).on('click','.reserve',function(){
+//     console.log("here");
+//     let self = this ;
+//     let roomid = $(this).attr('target');
+//     document.write(roomid);
+//     // $.ajax({
+//     //     url:`reservations/rooms/${roomid}`,
+//     //     type: 'GET',
+//     //     data:{
+//     //         '_token' : '{{csrf_token()}}',
+//     //         '_method':'DELETE'
+//     //     },
+//     //     success: res => {
+//     //         console.log("here from reserve");
+//     //         console.log(res);
+//     //         // res = JSON.parse(res);
+//     //         // if(res.status){
+//     //         //     $(self).parents('tr').remove();
+//     //         // }
+//     //     }
+//     // });
+// });
 </script>
 @endpush
 

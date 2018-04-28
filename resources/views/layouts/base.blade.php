@@ -64,36 +64,58 @@
             <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
                 <span class="sr-only">Toggle navigation</span>
             </a>
-            <div class="navbar-custom-menu">
-                <ul class="nav navbar-nav">
-                    <!-- User Account: style can be found in dropdown.less -->
-                    <li class="dropdown user user-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <span class="hidden-xs">User name</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <!-- Menu Footer-->
-                            <li class="user-footer">
-                                <div class="pull-left">
-                                    <a href="#" class="btn btn-default btn-flat">Profile</a>
-                                </div>
-                                <div class="pull-right">
-                                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-    <!-- Left side column. contains the logo and sidebar -->
-    <aside class="main-sidebar">
-        <!-- sidebar: style can be found in sidebar.less -->
-        <section class="sidebar">
+ 
 
-            <!-- sidebar menu: : style can be found in sidebar.less -->
-            <li class="header">MAIN NAVIGATION</li>
+        @guest
+        @else
+          <!-- User Account: style can be found in dropdown.less -->
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <span class="hidden-xs"> {{ Auth::user()->name }}</span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- Menu Footer-->
+              <li class="user-footer">
+                <div class="pull-left">
+                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                </div>
+                <div class="pull-right">
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                </div>
+              </li>
+              @endguest
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <li class="header">MAIN NAVIGATION</li>
+        <li class="active" >  <a href="{{ route('managers.index') }}" > <i class="fa fa-dashboard"></i> </i> Managers management </a></li>
+        <br><br>
+        <li class="active" >  <a href="receiptionists" > <i class="fa fa-dashboard"></i> </i> Receptionists management </a></li>
+        <br><br>
+        <li class="active" >  <a href="floors" > <i class="fa fa-dashboard"></i> </i> Floors management </a></li>
+        <br><br>
+        <li class="active" >  <a href="rooms" > <i class="fa fa-dashboard"></i> </i> Rooms management </a></li>
+        <br><br>
+        <li class="active" >  <a href="clients" > <i class="fa fa-dashboard"></i> </i> Clients management </a></li>
+
+          <br><br>
             <li class="active"><a href="managers"> <i class="fa fa-dashboard"></i> </i> Managers management </a></li>
             <br><br>
             <li class="active"><a href="receptionist"> <i class="fa fa-dashboard"></i> </i> Receptionists management
@@ -108,19 +130,6 @@
             <br><br>
             <li class="active"><a href="approvedclientsreservations"> <i class="fa fa-dashboard"></i> </i> Clients
                     Reservations </a></li>
-
-
-      <!-- sidebar menu: : style can be found in sidebar.less -->
-      <li class="header">MAIN NAVIGATION</li>
-        <li class="active" >  <a href="{{ route('managers.index') }}" > <i class="fa fa-dashboard"></i> </i> Managers management </a></li>
-        <br><br>
-        <li class="active" >  <a href="receiptionists" > <i class="fa fa-dashboard"></i> </i> Receptionists management </a></li>
-        <br><br>
-        <li class="active" >  <a href="floors" > <i class="fa fa-dashboard"></i> </i> Floors management </a></li>
-        <br><br>
-        <li class="active" >  <a href="clients" > <i class="fa fa-dashboard"></i> </i> Clients management </a></li>
-
-
             {{--  <ul class="sidebar-menu" data-widget="tree">
 
             <li class="active treeview">
