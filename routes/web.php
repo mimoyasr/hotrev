@@ -19,7 +19,7 @@ Route::resource('clients', 'ClientController')->except(['show'])->middleware('au
 Route::get('clients/getdata','ClientController@getdata')->name('clients.data');
 Route::get('/managers/getdata','ManagerController@getdata')->name('managers.data');
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth','forbid-banned-user');
 
 
 //---receiptionist---//
