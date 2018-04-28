@@ -36,7 +36,7 @@
                             <div class='form-row'>
                                 <div class='col-xs-12 form-group required'>
                                     <br>
-                                    <label class='control-label'> Paid Price In Dollars :</label> <input
+                                    <label class='control-label'> Paid Price:</label> <input
                                         autocomplete='off' class='form-control Paid Price' size='20'  placeholder="Please Enter Paid Price"
                                         name="paid_price"	type="number">
                                 </div>
@@ -45,7 +45,7 @@
                                 <div class='col-xs-12 form-group  required'>
                                     <label class='control-label'> Number Of Companions :</label> <input
                                         autocomplete='off' class='form-control Paid Price' size='20'  placeholder="Please Enter Number Of Companions"
-                                        name="no_companions"	type="number">
+                                        name="no_companions"  max="{{ $room_capacity }}"	type="number">
                                 </div>
                              </div> 
 
