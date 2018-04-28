@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Room;
-
+use App\User;
 use App\Floor;
 
 use Illuminate\Support\Facades\Auth;
@@ -31,14 +31,20 @@ class RoomController extends Controller
 
     public function getdata()
     {
-
-        return Datatables::of(Room::query())
-        ->addColumn('action', function($query){
-        $ret =  "<a href='rooms/" . $query->id . "/edit' class='btn btn-xs btn-primary'><i class='glyphicon glyphicon-edit'></i> Edit</a>";
-        $ret .= "<button type='button' target='".$query->id."'  class='delete btn-xs btn btn-danger' > DELETE </button>";
+        $rooms = Room::with('floor')->get();
+        return Datatables::of($rooms)
+        ->addColumn('action', function($rooms){
+            
+        $ret =  "<a href='rooms/" .  $rooms->id . "/edit' class='btn btn-xs btn-primary'><i class='glyphicon glyphicon-edit'></i> Edit</a>";
+        $ret .= "<button type='button' target='". $rooms->id."'  class='delete btn-xs btn btn-danger' > DELETE </button>";
        // $ret .= "<script>$('.delete').on('click',function(){console.log('here'); });</script>";
             return $ret;
-    })->rawcolumns(['action']) ->make(true);
+    })
+    ->addColumn('created_by',function( $rooms){
+        $user = User::whereId( $rooms->created_by)->first();
+        return $user->name;
+    })
+    ->rawcolumns(['action']) ->make(true);
        
     }
 
@@ -54,14 +60,15 @@ class RoomController extends Controller
 
     public function store(RoomsStoreRequest $request)
     {
-       
-        Room::create([
+        
+                $room = Room::create([
             'number' =>$request->number,
             'capacity' => $request->capacity,
-            'price' => $request->price,
+            'price'=>$request->price,
             'floor_id' => $request->floor,
             'created_by' => Auth::id(),
         ]);
+       
         return redirect(route('rooms.index')); 
      }
 
@@ -94,7 +101,10 @@ class RoomController extends Controller
     {
         
          Room::find($id)->delete();
-         return redirect(route('rooms.index')); 
+         
+         return json_encode([
+            "status"=> 1
+            ]);
     }
 
 }

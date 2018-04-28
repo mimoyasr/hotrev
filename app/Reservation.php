@@ -16,13 +16,14 @@ class Reservation extends Model
         'accompany',
         'paid_price'
     ];
+    protected $table = "reservations";
 
     function client()
     {
         return $this->belongsTo(Client::class);
     }
 
-    function room()
+    public function room()
     {
         return $this->belongsTo(Room::class);
     }

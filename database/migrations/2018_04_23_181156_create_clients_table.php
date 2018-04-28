@@ -17,11 +17,12 @@ class CreateClientsTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('mobile');
-            $table->string('country');
-            $table->string('gender');
-            $table->string('avatar_image');
+            $table->unsignedInteger('country_id');
+            $table->unsignedInteger('gender');
+            $table->string('photo');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            // $table->foreign('country_id')->references('id')->on('countries');
         });
     }
 

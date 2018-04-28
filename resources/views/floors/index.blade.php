@@ -15,6 +15,9 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Number</th>
+                @role('Admin')
+                <th>Created By</th>
+                @endrole
                 <th>Action</th>
             </tr>
         </thead>
@@ -36,6 +39,9 @@ $(function() {
             { data: 'id', name: 'id' },
             { data: 'name', name: 'name' },
             { data: 'nubmber', name: 'nubmber' },
+            @role('Admin')
+            { data: 'created_by', name:'created_by' },
+            @endrole
             { data: 'action', name: 'action', orderable: false, searchable: false }
         ]
     });
@@ -53,14 +59,25 @@ $(document).on('click','.delete',function(){
             '_token' : '{{csrf_token()}}',
             '_method':'DELETE'
         },
-        sucsess: res => {
+        success: res => {
             console.log("here");
             console.log(res);
-            res = JSON.parce(res);
+            res = JSON.parse(res);
             if(res.status){
-                $(self).parents('tr').remove();
+                $('#users-table').DataTable().ajax.reload();
             }
-        }
+            else
+            {
+                console.log("error");
+            }
+        },
+
+        error: res => { 
+           //('#div_error').val(<strong>Success!</strong> Indicates a successful or positive action.); 
+    }   
+        
+        
+    
     });
 });
 </script>

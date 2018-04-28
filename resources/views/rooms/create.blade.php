@@ -1,4 +1,3 @@
-create
 
 @extends('layouts.base')
 @section('content')
