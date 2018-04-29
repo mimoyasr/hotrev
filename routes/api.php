@@ -16,3 +16,5 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('user/login', 'APILoginController@login');
+Route::middleware('jwt.auth')->resource('rooms', 'Api\RoomController')->only(['index']);

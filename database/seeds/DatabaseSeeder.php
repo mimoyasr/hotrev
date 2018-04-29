@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\User;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,13 +13,28 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
-        //seed reciprion
-        DB::table('users')->insert([
-            'name' => str_random(10),
-            'email' => str_random(10).'@gmail.com',
-            'password' => bcrypt('secret'),
-        ]);
-        //-------------------------------------//
+        // Role::create(['name' => 'Admin']);
+        // Role::create(['name' => 'Manager']);
+        // Role::create(['name' => 'Receptionist']);
+        // Role::create(['name' => 'Client']);
+        // User::create([
+        //     'name' => 'admin',
+        //     'email'=> 'admin@admin.com',
+        //     'password' => bcrypt(123456),
+        // ])
+        // ->assignRole('Admin')
+        // ->assignRole('Manager')
+        // ->assignRole('Receptionist')
+        // ->assignRole('Client');
+        User::create([
+            'name' => 'Manger',
+            'email'=> 'man@man.com',
+            'password' => bcrypt(123456),
+        ])
+        ->assignRole('Manager')
+        ->assignRole('Receptionist')
+        ->assignRole('Client');
+       // $this->call('CountriesSeeder');
     }
+    
 }

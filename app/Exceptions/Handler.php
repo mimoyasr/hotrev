@@ -49,5 +49,10 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         return parent::render($request, $exception);
+        // if ($exception instanceof \Spatie\Permission\Exceptions\UnauthorizedException) {
+        //     //return redirect('ERROR');
+        //     return redirect(route('receiptionists.ErrorBan')); 
+        // }
+        // return parent::render($request, $exception);
     }
 }
