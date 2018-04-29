@@ -1,13 +1,8 @@
-@extends("layouts.base")
+@extends("layouts.app")
 @section('content')
     
 <div class="col-md-12 text-center"> 
 
-  <form action="/profiles">
-    <input type="submit" value="My Profile" />
-</form>
-  </div>
-<br><br>
 
   <table class="table table-bordered" id="users-table">
     <thead>

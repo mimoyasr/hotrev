@@ -109,7 +109,7 @@
         <br><br>
         <li class="active" >  <a href="receiptionists" > <i class="fa fa-dashboard"></i> </i> Receptionists management </a></li>
         <br><br>
-        <li class="active" >  <a href="floors" > <i class="fa fa-dashboard"></i> </i> Floors management </a></li>
+        <li class="active" >  <a href="{{ route('floors.index') }}" > <i class="fa fa-dashboard"></i> </i> Floors management </a></li>
         <br><br>
         <li class="active" >  <a href="rooms" > <i class="fa fa-dashboard"></i> </i> Rooms management </a></li>
         <br><br>
@@ -118,7 +118,7 @@
           <br><br>
             <li class="active"><a href="managers"> <i class="fa fa-dashboard"></i> </i> Managers management </a></li>
             <br><br>
-            <li class="active"><a href="receptionist"> <i class="fa fa-dashboard"></i> </i> Receptionists management
+            <li class="active"><a href="receiptionists"> <i class="fa fa-dashboard"></i> </i> Receptionists management
                 </a></li>
             <br><br>
             <li class="active"><a href="clients"> <i class="fa fa-dashboard"></i> </i> Clients management </a></li>

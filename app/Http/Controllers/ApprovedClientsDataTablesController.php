@@ -22,12 +22,25 @@ class ApprovedClientsDataTablesController extends Controller
             ->select(['users.name',
                 'users.email',
                 'clients.mobile',
-                'clients.country',
+                'clients.country_id',
                 'clients.gender'])
             ->Where("clients.approved_by", $receptionist_current_id);
 
 
-        return datatables()->of($clients)->toJson();
+        return datatables()->of($clients)->addColumn('country',
+        function ($query) {
+            $country=$query->country->full_name;
+            return $country;
+        })->addColumn('gender',
+            function ($query) {
+            if($query->gender==0){
+                return "male";
+            }else
+            {
+                return "female";
+            }
+
+            })->toJson()->toJson();
     }
 
     /**
