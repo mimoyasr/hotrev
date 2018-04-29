@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         ->assignRole('Receptionist')
         ->assignRole('Client');
         User::create([
-            'name' => 'Manger',
+            'name' => 'Manager',
             'email'=> 'man@man.com',
             'password' => bcrypt(123456),
         ])
