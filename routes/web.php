@@ -26,8 +26,10 @@ Route::get('clients/getdata','ClientController@getdata')->name('clients.data');
 Route::get('/resrvations/rooms/{id}','ReservationController@create')->name('reservations.create');
 Route::get('/resrvations','ReservationController@index')->name('reservations.index');
 Route::get('/resrvations/getdata','ReservationController@getdata')->name('reservations.data');
-
 Route::post('resrvations/store/{id}','ReservationController@store')->name('resrvations.store');
+
+Route::get('/profiles','ProfileController@index')->name('profiles.index');
+Route::get('/profiles/{id}/edit','ProfileController@edit')->name('profiles.edit');
 
 Route::get('/managers/getdata','ManagerController@getdata')->name('managers.data');
 Auth::routes();
@@ -104,3 +106,20 @@ Route::get('/approvedclientsreservations', 'ApprovedClientsReservationsControlle
     ->name('approvedclientsreservations.index');
 
 //------------------------------------------------------------------------------------//
+
+Route::post ( '/', function (Request $request) {
+    \Stripe\Stripe::setApiKey ( 'test_SecretKey' );
+    try {
+        \Stripe\Charge::create ( array (
+                "amount" => $request->input('paid_price'),
+                "currency" => "usd",
+                "source" => $request->input ( 'stripeToken' ), // obtained with Stripe.js
+                "description" => "Test payment." 
+        ) );
+        Session::flash ( 'success-message', 'Payment done successfully !' );
+        return Redirect::back ();
+    } catch ( \Exception $e ) {
+        Session::flash ( 'fail-message', "Error! Please Try again." );
+        return Redirect::back ();
+    }
+} );

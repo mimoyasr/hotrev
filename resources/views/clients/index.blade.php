@@ -1,11 +1,8 @@
-@extends("layouts.base")
+@extends("layouts.app")
 @section('content')
     
 <div class="col-md-12 text-center"> 
 
-  
-  </div>
-<br><br>
 
   <table class="table table-bordered" id="users-table">
     <thead>
@@ -38,28 +35,7 @@ $(function() {
         ]
     });
 });
-// $(document).on('click','.reserve',function(){
-//     console.log("here");
-//     let self = this ;
-//     let roomid = $(this).attr('target');
-//     document.write(roomid);
-//     // $.ajax({
-//     //     url:`reservations/rooms/${roomid}`,
-//     //     type: 'GET',
-//     //     data:{
-//     //         '_token' : '{{csrf_token()}}',
-//     //         '_method':'DELETE'
-//     //     },
-//     //     success: res => {
-//     //         console.log("here from reserve");
-//     //         console.log(res);
-//     //         // res = JSON.parse(res);
-//     //         // if(res.status){
-//     //         //     $(self).parents('tr').remove();
-//     //         // }
-//     //     }
-//     // });
-// });
+
 </script>
 @endpush
 

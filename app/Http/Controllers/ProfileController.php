@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Client;
-use Auth;
+use App\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Yajra\Datatables\Datatables;
 
-class ApprovedClientsDataTablesController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,23 +18,13 @@ class ApprovedClientsDataTablesController extends Controller
      */
     public function index()
     {
-        $receptionist_current_id=Auth::user()->id;
-        $clients = Client::join('users',
-            'clients.user_id',
-            '=', 'users.id')
-            ->select(['users.name',
-                'users.email',
-                'clients.mobile',
-                'clients.country_id',
-                'clients.gender'])
-            ->Where("clients.approved_by", $receptionist_current_id);
-
-
-        return datatables()->of($clients)->addColumn('country',
-        function ($query) {
-            $country=$query->country->full_name;
-            return $country;
-        })->toJson();
+        $client = Client::where('user_id',Auth::id())->first();
+        $user = User::where('id',Auth::id())->first();
+        // $profile_id = 
+        return view('profiles.index',[
+            'user' => $user ,
+            'client' => $client,
+        ]);
     }
 
     /**
@@ -47,7 +40,7 @@ class ApprovedClientsDataTablesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -58,7 +51,7 @@ class ApprovedClientsDataTablesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -69,19 +62,27 @@ class ApprovedClientsDataTablesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $client = Client::where('user_id',Auth::id())->first();
+        $user = User::where('id',Auth::id())->first();
+
+        // dd($client);
+
+        return view('profiles.edit',[
+            'user'   => $user,
+            'client' => $client ,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -92,7 +93,7 @@ class ApprovedClientsDataTablesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
