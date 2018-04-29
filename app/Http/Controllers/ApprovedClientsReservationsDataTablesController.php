@@ -28,7 +28,6 @@ class ApprovedClientsReservationsDataTablesController extends Controller
             '=', 'room_id')
             ->select(['number',
                 'clients.mobile',
-                'clients.country',
                 'clients.gender',
                 'client_id',
                 'accompany',
