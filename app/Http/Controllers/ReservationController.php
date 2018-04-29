@@ -36,11 +36,13 @@ class ReservationController extends Controller
     {
         $room = Room::where('number',$room_num);
         $room_id = $room->first()->id;
+        $room_cap = $room->first()->capacity;
         // dd($room_id);
         // dd(Client::where('user_id',Auth::id())->first());
         return view('reservations.create',[
             'client' =>  Client::where('user_id',Auth::id())->first(),
-            'room_id' => $room_id
+            'room_id' => $room_id , 
+            'room_capacity' => $room_cap ,
         ]);
     }
 

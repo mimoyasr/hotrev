@@ -26,8 +26,10 @@ Route::get('clients/getdata','ClientController@getdata')->name('clients.data');
 Route::get('/resrvations/rooms/{id}','ReservationController@create')->name('reservations.create');
 Route::get('/resrvations','ReservationController@index')->name('reservations.index');
 Route::get('/resrvations/getdata','ReservationController@getdata')->name('reservations.data');
-
 Route::post('resrvations/store/{id}','ReservationController@store')->name('resrvations.store');
+
+Route::get('/profiles','ProfileController@index')->name('profiles.index');
+Route::get('/profiles/{id}/edit','ProfileController@edit')->name('profiles.edit');
 
 Route::get('/managers/getdata','ManagerController@getdata')->name('managers.data');
 Auth::routes();

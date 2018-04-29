@@ -132,5 +132,4 @@ class ReceptionistController extends Controller
    return redirect(route('receiptionists.index')); 
    
 }
-
 }
