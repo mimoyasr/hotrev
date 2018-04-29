@@ -87,7 +87,23 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request->id); // user
+        $user = User::where('id',Auth::id())->first()->first();
+        $client = Client::where('id',$id)->first();
+        // dd($client);
+        $user->update([
+            'name' => $request->name ,
+            'email' => $request->email,
+            'password' => $request->password,
+        ]);
+
+        $client->update([
+            'mobile' => $request->mobile ,
+            'photo' => $request->photo,
+        ]);
+
+        return redirect(route('profiles.index'));
+
     }
 
     /**

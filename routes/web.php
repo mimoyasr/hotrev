@@ -30,6 +30,7 @@ Route::post('resrvations/store/{id}','ReservationController@store')->name('resrv
 
 Route::get('/profiles','ProfileController@index')->name('profiles.index');
 Route::get('/profiles/{id}/edit','ProfileController@edit')->name('profiles.edit');
+Route::put('/profiles/{id}','ProfileController@update')->name('profiles.update');
 
 Route::get('/managers/getdata','ManagerController@getdata')->name('managers.data');
 Auth::routes();
