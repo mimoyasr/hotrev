@@ -30,7 +30,7 @@ class ApprovedClientsDataTablesController extends Controller
         return datatables()->of($clients)->addColumn('country',
         function ($query) {
             $country=$query->country->full_name;
-            return $client_name;
+            return $country;
         })->toJson();
     }
 
