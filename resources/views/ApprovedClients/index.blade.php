@@ -15,7 +15,6 @@
                     {data: 'mobile', name: 'mobile', searchable: false},
                     {data: 'country', name: 'country', searchable: false},
                     {data: 'gender', name: 'gender', orderable: false, searchable: false}
-
                 ],
 
 
