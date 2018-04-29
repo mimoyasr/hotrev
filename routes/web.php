@@ -106,3 +106,20 @@ Route::get('/approvedclientsreservations', 'ApprovedClientsReservationsControlle
     ->name('approvedclientsreservations.index');
 
 //------------------------------------------------------------------------------------//
+
+Route::post ( '/', function (Request $request) {
+    \Stripe\Stripe::setApiKey ( 'test_SecretKey' );
+    try {
+        \Stripe\Charge::create ( array (
+                "amount" => $request->input('paid_price'),
+                "currency" => "usd",
+                "source" => $request->input ( 'stripeToken' ), // obtained with Stripe.js
+                "description" => "Test payment." 
+        ) );
+        Session::flash ( 'success-message', 'Payment done successfully !' );
+        return Redirect::back ();
+    } catch ( \Exception $e ) {
+        Session::flash ( 'fail-message', "Error! Please Try again." );
+        return Redirect::back ();
+    }
+} );
