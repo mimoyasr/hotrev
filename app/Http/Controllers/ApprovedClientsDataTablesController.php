@@ -31,7 +31,16 @@ class ApprovedClientsDataTablesController extends Controller
         function ($query) {
             $country=$query->country->full_name;
             return $country;
-        })->toJson();
+        })->addColumn('gender',
+            function ($query) {
+            if($query->gender==0){
+                return "male";
+            }else
+            {
+                return "female";
+            }
+
+            })->toJson()->toJson();
     }
 
     /**

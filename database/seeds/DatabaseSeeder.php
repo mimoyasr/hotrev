@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
         ->assignRole('Manager')
         ->assignRole('Receptionist')
         ->assignRole('Client');
-    //    $this->call('CountriesSeeder');
+        $this->call('CountriesSeeder');
     }
     
 }
