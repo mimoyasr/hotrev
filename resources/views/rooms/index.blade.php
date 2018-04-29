@@ -73,6 +73,9 @@ $(document).on('click','.delete',function(){
               
                
             }
+            else{
+                alert ("Can not Delete This room because this room is reserved");
+            }
         }
     });
 });

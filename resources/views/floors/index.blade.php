@@ -73,6 +73,8 @@ $(document).on('click','.delete',function(){
         },
 
         error: res => { 
+            console.log("i am herrrre");
+            alert('YOU CANNOT DELETE THIS FLOOR!!!!');
            //('#div_error').val(<strong>Success!</strong> Indicates a successful or positive action.); 
     }   
         

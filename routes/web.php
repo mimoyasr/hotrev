@@ -26,8 +26,10 @@ Route::get('clients/getdata','ClientController@getdata')->name('clients.data');
 Route::get('/resrvations/rooms/{id}','ReservationController@create')->name('reservations.create');
 Route::get('/resrvations','ReservationController@index')->name('reservations.index');
 Route::get('/resrvations/getdata','ReservationController@getdata')->name('reservations.data');
-
 Route::post('resrvations/store/{id}','ReservationController@store')->name('resrvations.store');
+
+Route::get('/profiles','ProfileController@index')->name('profiles.index');
+Route::get('/profiles/{id}/edit','ProfileController@edit')->name('profiles.edit');
 
 Route::get('/managers/getdata','ManagerController@getdata')->name('managers.data');
 Auth::routes();
@@ -70,14 +72,37 @@ Route::delete('rooms/{id}', 'RoomController@delete')->name('rooms.delete')->midd
 //--------------------------------------------------------//
 
 
-
-
 //------------------------------------------------------------------------------------//
 //approve pinding datatable
-Route::get('/pendingclientsdatatablesapprove', 'PendingClientsDataTablesApproveController@index')->name('pendingclientsdatatablesapprove.index');
-
-
+Route::get('/pendingclientsdatatablesapprove', 'PendingClientsDataTablesApproveController@index')
+    ->name('pendingclientsdatatablesapprove.index');
 //approve pinding
-Route::get('/pendingclients', 'PendingClientsController@index')->name('pendingclients.index');
-Route::put('/pendingclients/{id}', 'PendingClientsController@update')->name('pendingclients.update');
+Route::get('/pendingclients', 'PendingClientsController@index')
+    ->name('pendingclients.index');
+Route::put('/pendingclients/{id}', 'PendingClientsController@update')
+    ->name('pendingclients.update');
+Route::delete('/pendingclients/{id}', 'PendingClientsController@destroy')
+    ->name('pendingclients.destroy');
 
+//------------------------------------------------------------------------------------//
+//Approved clients datatable
+Route::get('/approvedclientsdatatables', 'ApprovedClientsDataTablesController@index')
+    ->name('approvedclientsdatatables.index');
+
+
+//Approved clients
+Route::get('/approvedclients', 'ApprovedClientsController@index')
+    ->name('approvedclients.index');
+
+//------------------------------------------------------------------------------------//
+
+//Approved clients datatable reservations
+Route::get('/approvedclientsreservationsdatatables', 'ApprovedClientsReservationsDataTablesController@index')
+    ->name('approvedclientsreservationsdatatables.index');
+
+
+//Approved clients reservations
+Route::get('/approvedclientsreservations', 'ApprovedClientsReservationsController@index')
+    ->name('approvedclientsreservations.index');
+
+//------------------------------------------------------------------------------------//
