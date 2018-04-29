@@ -27,3 +27,10 @@ stripe:
 
 composer require stripe/stripe-php
 
+#Team members 
+Amr Yasser Ahmed Ahmed Hamza
+Ahmed Helal Ahmed Ali
+Hossam Hassan Ibrahim Mahmoud
+Rowaina Ahdy Mohamed Adham El-Sahn
+Omnia Khamis Abo Elmagd 
+
